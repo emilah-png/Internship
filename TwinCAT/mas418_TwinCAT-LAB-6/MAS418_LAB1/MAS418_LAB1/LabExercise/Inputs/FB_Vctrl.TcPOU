@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="FB_Vctrl" Id="{360eff12-7f7d-40e3-a494-a9280c815ae1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Vctrl
+VAR_INPUT
+	fbPressureInputScaling : FB_PressureInputScaling;
+	nPressurePistonSide: LREAL;
+    nPressureRodSide: LREAL;
+    nPressureSupply: LREAL;
+    nWantedSpeed: LREAL;
+END_VAR
+VAR_OUTPUT
+    u: LREAL;
+    k: LREAL;
+END_VAR
+VAR_TEMP
+    Q: LREAL;
+	nDirSwitch: LREAL;
+END_VAR
+END_FUNCTION_BLOCK]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+IF nWantedSpeed > 0.0 THEN 
+	nDirSwitch := nPressurePistonSide;
+
+	Q := nWantedSpeed * 0.00331;
+
+ELSE 
+	nDirSwitch := nPressureRodSide;
+	IF nWantedSpeed < 0.0 THEN 
+		Q := nWantedSpeed * 0.00236003;
+	ELSE 
+		Q := 0.0;
+	END_IF;
+END_IF;
+
+u := ((((SQRT(700000.0 / (nPressureSupply - nDirSwitch)) * Q) * 60000.0) * 0.248) + 0.8) / 7.0;
+
+k := Q * 60000.0;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_Vctrl">
+      <LineId Id="283" Count="0" />
+      <LineId Id="234" Count="2" />
+      <LineId Id="280" Count="0" />
+      <LineId Id="238" Count="3" />
+      <LineId Id="244" Count="0" />
+      <LineId Id="246" Count="0" />
+      <LineId Id="249" Count="0" />
+      <LineId Id="251" Count="1" />
+      <LineId Id="274" Count="1" />
+      <LineId Id="277" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
