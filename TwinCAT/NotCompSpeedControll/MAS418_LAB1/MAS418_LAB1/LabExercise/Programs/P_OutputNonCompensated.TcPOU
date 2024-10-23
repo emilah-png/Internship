@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="P_OutputNonCompensated" Id="{91e8730f-330f-4841-8441-0d9eae6d44e6}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_OutputNonCompensated
+VAR
+	stValueInput 	: V2Q2u;
+	stValueOutput 	: FB_ValveOutput;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[stValueInput(
+	Ps 	:= G_Sensors.fPressureSupply,
+	Pa 	:= G_Simulator.fPistonSidePressure,
+	Pb 	:= G_Simulator.fRodSidePressure,
+	y 	:= G_Work.fJoystickY,
+	u	=> stValueOutput.fNormalizedInput
+);
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="P_OutputNonCompensated">
+      <LineId Id="5" Count="0" />
+      <LineId Id="8" Count="1" />
+      <LineId Id="11" Count="2" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="15" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
