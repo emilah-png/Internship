@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
   <POU Name="P_ControlBox" Id="{f099b577-7c17-4f98-8e29-157282967496}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM P_ControlBox
 VAR
 	fbControlBox : FB_ControlBox; 
+	bRealControlBox : BOOL := TRUE;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[fbControlBox(
-bRealControlBox := TRUE,
+bRealControlBox := bRealControlBox,
 eStatus := G_Work.eStatus,
 eMode => G_Work.eMode,
 );]]></ST>

@@ -14,82 +14,91 @@ VAR_OUTPUT
 	dP		: LREAL;
 END_VAR
 VAR
-	Q_star: LREAL;
-	temp1: LREAL;
-	temp2: LREAL;
+	phi						: LREAL ;
+	A						: LREAL ;
+	BW 						: LREAL ;
+	SpoolTravel 			: LREAL ;
+	fSlopeCharacteristic	: LREAL ;
+	dpref					: LREAL ;
+	dp0						: LREAL ;
+	Q						: LREAL ;	
+	Q_star					: LREAL ;
+
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[
-(* MATLAB FUNCTION: '<Root>/V2Q2u' *)
-(* MATLAB Function 'V2Q2u': '<S1>:1' *)
-(* '<S1>:1:3' phi = 0.7130; *)
-(* '<S1>:1:4' A = 33.1/100^2; *)//(* Area *)
-(* '<S1>:1:5' BW = 0; *)//(* Bandwidth *)
-(* '<S1>:1:6' SpoolTravel = 7; *)//(* Maximum Spool Travel *)
-(* '<S1>:1:7' a = (SpoolTravel-BW)/25; *)//(* Valve Slope Characteristic [mm/(L/min)] *)
-(* '<S1>:1:8' dP_0 = 7e5; *)//(* Pressure drop with compansator *)
-(* '<S1>:1:10' if x_dot > 0 *)
+      <ST><![CDATA[phi := 0.7130; 
+A := 33.1/10000; 								// Area
+BW := 0;										// Bandwidth 
+SpoolTravel := 7; 								//Maximum Spool Travel
+fSlopeCharacteristic := (SpoolTravel-BW)/25; 	// Valve Slope Characteristic [mm/(L/min)] 
+dP0 := 7E5; 									// Pressure drop with compansator 
 
 IF y > 0.0 THEN 
     (* '<S1>:1:11' 
-	Q = x_dot * A; *)(* Wanted Flow *)
+	Q := x_dot * A; *)(* Wanted Flow *)
     (* '<S1>:1:12' 
-	dP = (Ps-Pa)*1e5; *)
-    dP := (Ps - Pa) * 100000.0;
+	dP := (Ps-Pa)*1e5; *)
+    
     (* '<S1>:1:13'	
-	dp_ref = abs(dP_0/dP); *)
-    //(* dp_ref = 1; *)
+	dp_ref := abs(dP_0/dP); *)
+     
     (* '<S1>:1:15' 
-	Q_star = (Q * sqrt(dp_ref)) * 6e4; *)
-    temp2 := ABS(700000.0 / dP);
-    Q_star := ((y * 0.00331) * SQRT(temp2)) * 60000.0;
+	Q_star := (Q * sqrt(dp_ref)) * 6e4; *)
+	Q := y * A; // Wanted Flow
+	dP := (Ps - Pa) * 100000.0;
+    // dpref := ABS(dP0 / dP); 
+	dpref := 1;
+	
+    Q_star := (Q * SQRT(dpref)) * 60000.0;
     (* Outport: '<Root>/u' *)
     (* Referance Flow [L/min] *)
     (* '<S1>:1:16' 
-	u = (Q_star * a + BW)/SpoolTravel; *)
-    u := (Q_star * 0.28) / 7.0; // Control Signal [-1, 1]
+	u := (Q_star * a + BW)/SpoolTravel; *)
+    u := (Q_star * (fSlopeCharacteristic+BW)) / SpoolTravel; // Control Signal [-1, 1]
 ELSIF y < 0.0 THEN 
     (* '<S1>:1:18' elseif x_dot < 0 *)
-    (* '<S1>:1:19' Q = x_dot * (A*phi); *)(* Wanted Flow *)
-    (* '<S1>:1:20' dP = (Ps-Pb)*1e5; *)
+    (* '<S1>:1:19' Q := x_dot * (A*phi); *)(* Wanted Flow *)
+    (* '<S1>:1:20' dP := (Ps-Pb)*1e5; *)
     dP := (Ps - Pb) * 100000.0;
-    (* '<S1>:1:21' dp_ref = abs(dP_0/dP); *)
-    (* dp_ref = 1; *)
-    (* '<S1>:1:23' Q_star = (Q * sqrt(dp_ref)) * 6e4; *)
-    temp1 := ABS(700000.0 / dP);
-    Q_star := ((y * 0.00236003) * SQRT(temp1)) * 60000.0;
+    (* '<S1>:1:21' dp_ref := abs(dP_0/dP); *)
+    (* dp_ref := 1; *)
+    (* '<S1>:1:23' Q_star := (Q * sqrt(dp_ref)) * 6e4; *)
+    dpref := 1;
+	// dpref := ABS(dP0 / dP);
+	Q_star := (Q * SQRT(dpref)) * 60000.0;
     (* Outport: '<Root>/u' *)
     (* Referance Flow [L/min] *)
-    (* '<S1>:1:24' u = (Q_star * a - BW)/SpoolTravel; *)
-    u := (Q_star * 0.28) / 7.0;
+    (* '<S1>:1:24' u := (Q_star * a - BW)/SpoolTravel; *)
+	u := (Q_star * (fSlopeCharacteristic - BW)) / SpoolTravel;
     (* Control Signal [-1, 1] *)
 ELSE 
     (* '<S1>:1:26' else *)
-    (* '<S1>:1:27' Q_star = 0; *)
+    (* '<S1>:1:27' Q_star := 0; *)
     Q_star := 0.0;
-    (* '<S1>:1:28' dP = 0; *)
+    (* '<S1>:1:28' dP := 0; *)
     dP := 0.0;
     (* Outport: '<Root>/u' *)
-    (* '<S1>:1:29' u = 0; *)
+    (* '<S1>:1:29' u := 0; *)
     u := 0.0;
 END_IF;
 
 (* Outport: '<Root>/Q_lm' incorporates:
  *  MATLAB Function: '<Root>/V2Q2u' *)
-(* '<S1>:1:32' Q_lm = Q_star; *)
+(* '<S1>:1:32' Q_lm := Q_star; *)
 (* Q * 6E4; *)
 Q_lm := Q_star;
 
 ]]></ST>
     </Implementation>
     <LineIds Name="V2Q2u">
-      <LineId Id="151" Count="4" />
+      <LineId Id="154" Count="1" />
       <LineId Id="157" Count="0" />
       <LineId Id="159" Count="0" />
       <LineId Id="161" Count="0" />
       <LineId Id="163" Count="0" />
-      <LineId Id="165" Count="3" />
+      <LineId Id="166" Count="1" />
+      <LineId Id="246" Count="0" />
       <LineId Id="218" Count="0" />
       <LineId Id="170" Count="0" />
       <LineId Id="219" Count="0" />
@@ -97,11 +106,21 @@ Q_lm := Q_star;
       <LineId Id="216" Count="0" />
       <LineId Id="173" Count="1" />
       <LineId Id="217" Count="0" />
-      <LineId Id="175" Count="4" />
+      <LineId Id="252" Count="0" />
+      <LineId Id="254" Count="0" />
+      <LineId Id="175" Count="0" />
+      <LineId Id="251" Count="0" />
+      <LineId Id="255" Count="0" />
+      <LineId Id="176" Count="3" />
       <LineId Id="215" Count="0" />
       <LineId Id="180" Count="0" />
       <LineId Id="182" Count="2" />
-      <LineId Id="186" Count="28" />
+      <LineId Id="186" Count="5" />
+      <LineId Id="282" Count="0" />
+      <LineId Id="256" Count="0" />
+      <LineId Id="193" Count="2" />
+      <LineId Id="257" Count="0" />
+      <LineId Id="197" Count="17" />
       <LineId Id="2" Count="0" />
     </LineIds>
   </POU>

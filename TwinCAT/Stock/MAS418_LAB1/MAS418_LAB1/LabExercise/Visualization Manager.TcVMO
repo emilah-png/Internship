@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
   <VisuManager Name="Visualization Manager" Id="{d4dad1d8-8a57-4688-b496-ac7302756b38}">
     <XmlArchive>
       <Data>
@@ -43,12 +43,12 @@
           </o>
           <o n="RegisterDesc" t="GenericFbDescription">
             <d n="FbMethods" t="CaseInsensitiveHashtable" ckt="String" cvt="Guid">
+              <v>FB_Exit</v>
+              <v>12e769fa-46c8-416e-a457-b3e9fd31a672</v>
               <v>FB_Init</v>
               <v>0b33a264-4058-4d9f-a2ed-2a4592c14b65</v>
               <v>FB_Reinit</v>
               <v>d82dc462-4a01-4178-b174-3feb7714d135</v>
-              <v>FB_Exit</v>
-              <v>12e769fa-46c8-416e-a457-b3e9fd31a672</v>
             </d>
             <v n="FbName">"NotImportant"</v>
             <v n="FbGuid">{d832ffed-f68b-433e-87a2-b043c4853417}</v>
@@ -464,42 +464,42 @@
           </o>
           <o n="DefInpHandlerGuids" t="GenericFbDescription">
             <d n="FbMethods" t="CaseInsensitiveHashtable" ckt="String" cvt="Guid">
-              <v>ExecuteLooseCapture</v>
-              <v>e5e1a15b-be16-4743-b24f-0c4bea166ed5</v>
-              <v>ExecuteMouseUp</v>
-              <v>3d9b044b-ea63-449b-961a-0726a1bc8594</v>
-              <v>Init</v>
-              <v>e662e9bc-a042-4cbc-b937-c9cc26178c6c</v>
-              <v>FB_Exit</v>
-              <v>a6155ce1-ef8d-42ef-b29e-c23be856d873</v>
-              <v>ExecuteMouseDblClick</v>
-              <v>3d3b4b76-8dec-4c9f-926b-1dbb88519dc8</v>
-              <v>GetElementInfo</v>
-              <v>2944677c-9aac-434e-9b3f-3fd37081c7aa</v>
-              <v>ExecuteMouseDown</v>
-              <v>de73537f-2c81-4631-9b8e-cc8cea2f1dd0</v>
-              <v>FB_Reinit</v>
-              <v>ae86d92b-bd0f-4bf4-8f97-ff0b8a54ea92</v>
-              <v>Initialize</v>
-              <v>5062aa86-febd-43dc-80cf-15de2be44bc6</v>
-              <v>ExecuteMouseMove</v>
-              <v>e15215cc-bdf2-4c91-9bc1-e46495b9eeee</v>
-              <v>ExecuteDialogClosed</v>
-              <v>18f2f28b-8649-4582-9999-b695a58f9849</v>
-              <v>ExecuteKeyUp</v>
-              <v>a08ddde6-24ce-4d45-99b5-10d20e276eb8</v>
-              <v>ExecuteKeyDown</v>
-              <v>3b50ba40-820b-4e61-aff2-e6533da3e755</v>
               <v>abstrGetDefaultCursor</v>
               <v>7195ae30-2e25-4114-91d2-69734b60daae</v>
+              <v>ExecuteDialogClosed</v>
+              <v>18f2f28b-8649-4582-9999-b695a58f9849</v>
+              <v>ExecuteKeyDown</v>
+              <v>3b50ba40-820b-4e61-aff2-e6533da3e755</v>
+              <v>ExecuteKeyUp</v>
+              <v>a08ddde6-24ce-4d45-99b5-10d20e276eb8</v>
+              <v>ExecuteLooseCapture</v>
+              <v>e5e1a15b-be16-4743-b24f-0c4bea166ed5</v>
+              <v>ExecuteMouseClick</v>
+              <v>d71ed396-79c1-495a-8528-833d5ca1cc3a</v>
+              <v>ExecuteMouseDblClick</v>
+              <v>3d3b4b76-8dec-4c9f-926b-1dbb88519dc8</v>
+              <v>ExecuteMouseDown</v>
+              <v>de73537f-2c81-4631-9b8e-cc8cea2f1dd0</v>
               <v>ExecuteMouseEnter</v>
               <v>a9c93387-16a8-44a8-80aa-5fd063237c0a</v>
               <v>ExecuteMouseLeave</v>
               <v>7a092215-e5fa-4e30-b8e6-686af71718d8</v>
+              <v>ExecuteMouseMove</v>
+              <v>e15215cc-bdf2-4c91-9bc1-e46495b9eeee</v>
+              <v>ExecuteMouseUp</v>
+              <v>3d9b044b-ea63-449b-961a-0726a1bc8594</v>
+              <v>FB_Exit</v>
+              <v>a6155ce1-ef8d-42ef-b29e-c23be856d873</v>
               <v>FB_Init</v>
               <v>f11863a1-4f1b-4ecf-8332-5f33527e2557</v>
-              <v>ExecuteMouseClick</v>
-              <v>d71ed396-79c1-495a-8528-833d5ca1cc3a</v>
+              <v>FB_Reinit</v>
+              <v>ae86d92b-bd0f-4bf4-8f97-ff0b8a54ea92</v>
+              <v>GetElementInfo</v>
+              <v>2944677c-9aac-434e-9b3f-3fd37081c7aa</v>
+              <v>Init</v>
+              <v>e662e9bc-a042-4cbc-b937-c9cc26178c6c</v>
+              <v>Initialize</v>
+              <v>5062aa86-febd-43dc-80cf-15de2be44bc6</v>
             </d>
             <v n="FbName">"NotImportant"</v>
             <v n="FbGuid">{dec6a4f4-c3e2-42dc-9098-8737df0f8036}</v>

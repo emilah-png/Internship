@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
   <POU Name="FB_ControlBox" Id="{23a5fbb3-746f-49da-9ce4-8057d9ad01ee}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_ControlBox
 VAR_INPUT
@@ -17,7 +17,8 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF bRealControlBox THEN
-	fbSelectedControlBox := fbRealControlBox;
+	//fbSelectedControlBox := bRealControlBox;
+	fbSelectedControlBox := fbVirtualControlBox;
 ELSE
 	fbSelectedControlBox := fbVirtualControlBox;
 END_IF	
@@ -45,7 +46,9 @@ fbSelectedControlBox.Joystick(
 );]]></ST>
     </Implementation>
     <LineIds Name="FB_ControlBox">
-      <LineId Id="311" Count="8" />
+      <LineId Id="311" Count="0" />
+      <LineId Id="433" Count="0" />
+      <LineId Id="312" Count="7" />
       <LineId Id="394" Count="0" />
       <LineId Id="410" Count="0" />
       <LineId Id="416" Count="0" />

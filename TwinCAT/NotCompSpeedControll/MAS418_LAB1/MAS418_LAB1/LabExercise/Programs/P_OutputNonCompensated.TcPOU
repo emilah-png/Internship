@@ -14,17 +14,13 @@ END_VAR
 	Pb 	:= G_Simulator.fRodSidePressure,
 	y 	:= G_Work.fJoystickY,
 	u	=> stValueOutput.fNormalizedInput
-);
-
-]]></ST>
+);]]></ST>
     </Implementation>
     <LineIds Name="P_OutputNonCompensated">
       <LineId Id="5" Count="0" />
       <LineId Id="8" Count="1" />
       <LineId Id="11" Count="2" />
       <LineId Id="7" Count="0" />
-      <LineId Id="16" Count="0" />
-      <LineId Id="15" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
