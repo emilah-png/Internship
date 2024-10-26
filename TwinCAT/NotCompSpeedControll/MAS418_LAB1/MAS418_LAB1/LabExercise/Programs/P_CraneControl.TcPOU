@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
   <POU Name="P_CraneControl" Id="{c8d14843-0c4e-4243-a583-0726f2828bd5}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM P_CraneControl
 VAR
@@ -63,7 +63,7 @@ ELSE
 	fControlOutputNormalized := 0.0;
 END_IF
 
-G_Work.fControlOutputNormalized := fControlOutputNormalized;]]></ST>
+//G_Work.fControlOutputNormalized := fControlOutputNormalized;]]></ST>
     </Implementation>
     <LineIds Name="P_CraneControl">
       <LineId Id="123" Count="0" />

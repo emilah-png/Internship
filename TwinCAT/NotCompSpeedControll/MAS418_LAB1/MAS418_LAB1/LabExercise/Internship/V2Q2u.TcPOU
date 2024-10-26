@@ -14,27 +14,23 @@ VAR_OUTPUT
 	dP		: LREAL;
 END_VAR
 VAR
-	phi						: LREAL ;
-	A						: LREAL ;
-	BW 						: LREAL ;
-	SpoolTravel 			: LREAL ;
+	phi						: LREAL := 0.7130;
+	A						: LREAL := 0.00331;		// Area
+	BW 						: LREAL := 0;			// Bandwidth 
+	SpoolTravel 			: LREAL := 7.0; 		// Maximum Spool Travel
+	dp0						: LREAL := 7E5;			// Pressure drop with compansator 
 	fSlopeCharacteristic	: LREAL ;
 	dpref					: LREAL ;
-	dp0						: LREAL ;
 	Q						: LREAL ;	
 	Q_star					: LREAL ;
-
+	X_dot 					: LREAL ;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[phi := 0.7130; 
-A := 33.1/10000; 								// Area
-BW := 0;										// Bandwidth 
-SpoolTravel := 7; 								//Maximum Spool Travel
-fSlopeCharacteristic := (SpoolTravel-BW)/25; 	// Valve Slope Characteristic [mm/(L/min)] 
-dP0 := 7E5; 									// Pressure drop with compansator 
+      <ST><![CDATA[fSlopeCharacteristic := (SpoolTravel-BW)/25; 	// Valve Slope Characteristic [mm/(L/min)]  
+X_dot := y * 0.1; 
 
-IF y > 0.0 THEN 
+IF X_dot > 0.0 THEN 
     (* '<S1>:1:11' 
 	Q := x_dot * A; *)(* Wanted Flow *)
     (* '<S1>:1:12' 
@@ -45,9 +41,9 @@ IF y > 0.0 THEN
      
     (* '<S1>:1:15' 
 	Q_star := (Q * sqrt(dp_ref)) * 6e4; *)
-	Q := y * A; // Wanted Flow
+	Q := X_dot * A; // Wanted Flow
 	dP := (Ps - Pa) * 100000.0;
-    // dpref := ABS(dP0 / dP); 
+    dpref := ABS(dP0 / dP); 
 	dpref := 1;
 	
     Q_star := (Q * SQRT(dpref)) * 60000.0;
@@ -56,16 +52,16 @@ IF y > 0.0 THEN
     (* '<S1>:1:16' 
 	u := (Q_star * a + BW)/SpoolTravel; *)
     u := (Q_star * (fSlopeCharacteristic+BW)) / SpoolTravel; // Control Signal [-1, 1]
-ELSIF y < 0.0 THEN 
+ELSIF X_dot < 0.0 THEN 
     (* '<S1>:1:18' elseif x_dot < 0 *)
-    (* '<S1>:1:19' Q := x_dot * (A*phi); *)(* Wanted Flow *)
+    Q := X_dot * (A*phi);(* Wanted Flow *)
     (* '<S1>:1:20' dP := (Ps-Pb)*1e5; *)
     dP := (Ps - Pb) * 100000.0;
     (* '<S1>:1:21' dp_ref := abs(dP_0/dP); *)
     (* dp_ref := 1; *)
     (* '<S1>:1:23' Q_star := (Q * sqrt(dp_ref)) * 6e4; *)
-    dpref := 1;
-	// dpref := ABS(dP0 / dP);
+	dpref := ABS(dP0 / dP);
+	dpref := 1;
 	Q_star := (Q * SQRT(dpref)) * 60000.0;
     (* Outport: '<Root>/u' *)
     (* Referance Flow [L/min] *)
@@ -89,14 +85,15 @@ END_IF;
 (* Q * 6E4; *)
 Q_lm := Q_star;
 
-]]></ST>
+IF u > 1.0 THEN 
+    u := 1.0;
+ELSIF u < -1.0 THEN 
+   	u := -1.0;
+END_IF;]]></ST>
     </Implementation>
     <LineIds Name="V2Q2u">
-      <LineId Id="154" Count="1" />
-      <LineId Id="157" Count="0" />
-      <LineId Id="159" Count="0" />
       <LineId Id="161" Count="0" />
-      <LineId Id="163" Count="0" />
+      <LineId Id="309" Count="0" />
       <LineId Id="166" Count="1" />
       <LineId Id="246" Count="0" />
       <LineId Id="218" Count="0" />
@@ -115,12 +112,15 @@ Q_lm := Q_star;
       <LineId Id="215" Count="0" />
       <LineId Id="180" Count="0" />
       <LineId Id="182" Count="2" />
-      <LineId Id="186" Count="5" />
+      <LineId Id="186" Count="4" />
       <LineId Id="282" Count="0" />
       <LineId Id="256" Count="0" />
+      <LineId Id="310" Count="0" />
       <LineId Id="193" Count="2" />
       <LineId Id="257" Count="0" />
-      <LineId Id="197" Count="17" />
+      <LineId Id="197" Count="16" />
+      <LineId Id="345" Count="0" />
+      <LineId Id="341" Count="3" />
       <LineId Id="2" Count="0" />
     </LineIds>
   </POU>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
   <POU Name="FB_CraneSimulator" Id="{8670c58c-3f94-4242-bcb3-044a8e249d2c}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_CraneSimulator
 VAR_INPUT
@@ -210,7 +210,7 @@ CASE ssMethodType OF
         (* '<S2>:1:69' Fhyd = pPiston*Apiston - pRod*Aannulus; *)
         (* Newton Second Law of Motion *)
         (* '<S2>:1:72' xDotDot = (Fhyd - Ffric - Fexternal)/mEffective; *)
-        rtb_xDotDot := ((((c_DiscreteTimeIntegrator_DS * 0.0033) - (c_DiscreteTimeIntegrator4_D * 0.0023)) - (4000.0 * c_DiscreteTimeIntegrator2_D)) - 13365.0) / 13365.0;
+        rtb_xDotDot := ((((c_DiscreteTimeIntegrator_DS * 0.0033) - (c_DiscreteTimeIntegrator4_D * 0.0023)) - (4000.0 * c_DiscreteTimeIntegrator2_D)) - 23365.0) / 23365.0;
         (* Update for DiscreteIntegrator: '<S1>/Discrete-Time Integrator' incorporates:
          *  DiscreteIntegrator: '<S1>/Discrete-Time Integrator2'
          *  DiscreteIntegrator: '<S1>/Discrete-Time Integrator3'
