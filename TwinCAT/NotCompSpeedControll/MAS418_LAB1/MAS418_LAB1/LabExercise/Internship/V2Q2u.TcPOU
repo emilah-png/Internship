@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="V2Q2u" Id="{8efb5770-48c6-4830-a612-83b6696c3542}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK V2Q2u
 VAR_INPUT
@@ -44,7 +44,7 @@ IF X_dot > 0.0 THEN
 	Q := X_dot * A; // Wanted Flow
 	dP := (Ps - Pa) * 100000.0;
     dpref := ABS(dP0 / dP); 
-	dpref := 1;
+	//dpref := 1;
 	
     Q_star := (Q * SQRT(dpref)) * 60000.0;
     (* Outport: '<Root>/u' *)
@@ -61,7 +61,7 @@ ELSIF X_dot < 0.0 THEN
     (* dp_ref := 1; *)
     (* '<S1>:1:23' Q_star := (Q * sqrt(dp_ref)) * 6e4; *)
 	dpref := ABS(dP0 / dP);
-	dpref := 1;
+	//dpref := 1;
 	Q_star := (Q * SQRT(dpref)) * 60000.0;
     (* Outport: '<Root>/u' *)
     (* Referance Flow [L/min] *)
@@ -71,9 +71,9 @@ ELSIF X_dot < 0.0 THEN
 ELSE 
     (* '<S1>:1:26' else *)
     (* '<S1>:1:27' Q_star := 0; *)
-    Q_star := 0.0;
+    //Q_star := 0.0;
     (* '<S1>:1:28' dP := 0; *)
-    dP := 0.0;
+    //dP := 0.0;
     (* Outport: '<Root>/u' *)
     (* '<S1>:1:29' u := 0; *)
     u := 0.0;
