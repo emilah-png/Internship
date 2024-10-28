@@ -17,8 +17,8 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF bRealControlBox THEN
-	//fbSelectedControlBox := bRealControlBox;
-	fbSelectedControlBox := fbVirtualControlBox;
+	fbSelectedControlBox := bRealControlBox;
+	//fbSelectedControlBox := fbVirtualControlBox;
 ELSE
 	fbSelectedControlBox := fbVirtualControlBox;
 END_IF	

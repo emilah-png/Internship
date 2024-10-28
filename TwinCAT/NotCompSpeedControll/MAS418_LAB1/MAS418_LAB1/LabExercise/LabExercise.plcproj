@@ -145,6 +145,9 @@
     <Compile Include="Inputs\Struct\ST_AnalogInputStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Internship\F_PressureSensorInToBar.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Internship\V2Q2u.TcPOU">
       <SubType>Code</SubType>
     </Compile>

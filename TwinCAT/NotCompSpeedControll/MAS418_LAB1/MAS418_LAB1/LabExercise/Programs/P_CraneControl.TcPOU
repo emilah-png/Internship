@@ -32,6 +32,7 @@ fbRunningClock(
 	fCycleTime := G_Parameters.stParam.fCyclicTime
 );
 
+
 fbManualControl(
 	eMode := G_Work.eMode,
 	eStatus := G_Work.eStatus,
@@ -75,6 +76,7 @@ END_IF
       <LineId Id="214" Count="0" />
       <LineId Id="219" Count="2" />
       <LineId Id="218" Count="0" />
+      <LineId Id="251" Count="0" />
       <LineId Id="23" Count="0" />
       <LineId Id="7" Count="0" />
       <LineId Id="21" Count="0" />
