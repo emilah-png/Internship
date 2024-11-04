@@ -148,9 +148,6 @@
     <Compile Include="Internship\c_FB_ControlBlockWithMonito.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Internship\FB_ControlBlockWithMonito.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Internship\FB_InitialPos.TcPOU">
       <SubType>Code</SubType>
     </Compile>

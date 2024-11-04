@@ -2,69 +2,298 @@
  *
  * File: Sim2Twin_controlsystem_pos_Discrete.st
  *
- * IEC 61131-3 Structured Text (ST) code generated for subsystem "Sim2Twin_controlsystem_pos_Discrete/FB_Joystick"
+ * IEC 61131-3 Structured Text (ST) code generated for subsystem "Sim2Twin_controlsystem_pos_Discrete/FB_ControlBlockWithMonitoring"
  *
  * Model name                      : Sim2Twin_controlsystem_pos_Discrete
- * Model version                   : 1.10
+ * Model version                   : 1.14
  * Model creator                   : Emila
  * Model last modified by          : Green Crane Testbed
- * Model last modified on          : Mon Nov 04 14:50:48 2024
+ * Model last modified on          : Mon Nov 04 18:17:25 2024
  * Model sample time               : 0.001s
- * Subsystem name                  : Sim2Twin_controlsystem_pos_Discrete/FB_Joystick
+ * Subsystem name                  : Sim2Twin_controlsystem_pos_Discrete/FB_ControlBlockWithMonitoring
  * Subsystem sample time           : 0.001s
  * Simulink PLC Coder version      : 24.2 (R2024b) 21-Jun-2024
- * ST code generated on            : Mon Nov 04 14:52:27 2024
+ * ST code generated on            : Mon Nov 04 18:17:34 2024
  *
  * Target IDE selection            : Beckhoff TwinCAT 3
  * Test Bench included             : No
  *
  *)
-FUNCTION_BLOCK FB_Joystick
+FUNCTION_BLOCK c_FB_ControlBlockWithMonito
 VAR_INPUT
     ssMethodType: SINT;
-    Joystick: LREAL;
-    XInital: LREAL;
+    Ps: LREAL;
+    Pa: LREAL;
+    Pb: LREAL;
+    X_real: LREAL;
+    X: LREAL;
+    X_dot: LREAL;
+    bEnableU: BOOL;
+    bEnablePID: BOOL;
+    Kp: LREAL;
+    Ki: LREAL;
+    Kd: LREAL;
+    NumP: LREAL;
+    DenPz: LREAL;
+    InitialP: LREAL;
+    NumU: LREAL;
+    DenUz: LREAL;
+    InitU: LREAL;
+    DenP: LREAL;
+    DenU: LREAL;
 END_VAR
 VAR_OUTPUT
-    fPositionReferance_m: LREAL;
-    fVelocityReferance_ms: LREAL;
+    U: LREAL;
+    PID_OUT: LREAL;
+    Error: LREAL;
+    u_Filtered: LREAL;
+    Pb_Filtered: LREAL;
+    Ps_Filtered: LREAL;
+    Pa_Filtered: LREAL;
+    Ps_Unfiltered: LREAL;
+    Pa_Unfiltered: LREAL;
+    Pb_Unfiltered: LREAL;
+    u_Unfiltered: LREAL;
 END_VAR
 VAR
-    c_DiscreteTimeIntegrator_IC: USINT;
     c_DiscreteTimeIntegrator_DS: LREAL;
+    DiscreteTransferFcn1_icLoad: USINT;
+    DiscreteTransferFcn1_states: LREAL;
+    b_DiscreteTransferFcn1_icLo: USINT;
+    b_DiscreteTransferFcn1_stat: LREAL;
+    c_DiscreteTransferFcn1_icLo: USINT;
+    c_DiscreteTransferFcn1_stat: LREAL;
+    d_DiscreteTransferFcn1_icLo: USINT;
+    d_DiscreteTransferFcn1_stat: LREAL;
+    DiscreteTransferFcn_states: LREAL;
+    UD_DSTATE: LREAL;
+    c_TmpSignalConversionAtDisc: ARRAY [0..1] OF LREAL;
+    d_TmpSignalConversionAtDisc: ARRAY [0..1] OF LREAL;
+END_VAR
+VAR_TEMP
+    rtb_TSamp: LREAL;
+    temp1: LREAL;
+    temp2: LREAL;
 END_VAR
 CASE ssMethodType OF
     SS_INITIALIZE: 
-        (* SystemInitialize for Atomic SubSystem: '<Root>/FB_Joystick' *)
-        (* InitializeConditions for DiscreteIntegrator: '<S1>/Discrete-Time Integrator' *)
-        c_DiscreteTimeIntegrator_IC := 1;
-        (* End of SystemInitialize for SubSystem: '<Root>/FB_Joystick' *)
+        (* SystemInitialize for Atomic SubSystem: '<Root>/FB_ControlBlockWithMonitoring' *)
+        (* InitializeConditions for DiscreteTransferFcn: '<S5>/Discrete Transfer Fcn1' *)
+        DiscreteTransferFcn1_icLoad := 1;
+        (* InitializeConditions for DiscreteTransferFcn: '<S6>/Discrete Transfer Fcn' *)
+        DiscreteTransferFcn_states := 0.0;
+        (* InitializeConditions for DiscreteIntegrator: '<S6>/Discrete-Time Integrator' *)
+        c_DiscreteTimeIntegrator_DS := 0.0;
+        (* InitializeConditions for UnitDelay: '<S8>/UD'
+         *
+         * Block description for '<S8>/UD':
+         *  
+         *  Store in Global RAM *)
+        UD_DSTATE := 0.0;
+        (* InitializeConditions for DiscreteTransferFcn: '<S2>/Discrete Transfer Fcn1' *)
+        b_DiscreteTransferFcn1_icLo := 1;
+        (* InitializeConditions for DiscreteTransferFcn: '<S3>/Discrete Transfer Fcn1' *)
+        c_DiscreteTransferFcn1_icLo := 1;
+        (* InitializeConditions for DiscreteTransferFcn: '<S4>/Discrete Transfer Fcn1' *)
+        d_DiscreteTransferFcn1_icLo := 1;
+        (* End of SystemInitialize for SubSystem: '<Root>/FB_ControlBlockWithMonitoring' *)
     SS_STEP: 
-        (* Outputs for Atomic SubSystem: '<Root>/FB_Joystick' *)
-        (* Gain: '<S1>/Gain' *)
-        fVelocityReferance_ms := 0.1 * Joystick;
-        (* DiscreteIntegrator: '<S1>/Discrete-Time Integrator' *)
-        IF c_DiscreteTimeIntegrator_IC <> 0 THEN 
-            c_DiscreteTimeIntegrator_DS := XInital;
-            IF c_DiscreteTimeIntegrator_DS > 0.45 THEN 
-                c_DiscreteTimeIntegrator_DS := 0.45;
-            ELSIF c_DiscreteTimeIntegrator_DS < 0.0 THEN 
-                c_DiscreteTimeIntegrator_DS := 0.0;
-            END_IF;
+        (* Outputs for Atomic SubSystem: '<Root>/FB_ControlBlockWithMonitoring' *)
+        (* Sum: '<S1>/Sum1' incorporates:
+         *  Outport: '<Root>/Error' *)
+        Error := X - X_real;
+        (* SignalConversion: '<S5>/TmpSignal ConversionAtDiscrete Transfer Fcn1Inport3' *)
+        c_TmpSignalConversionAtDisc[0] := DenUz;
+        c_TmpSignalConversionAtDisc[1] := DenU;
+        (* DiscreteTransferFcn: '<S5>/Discrete Transfer Fcn1' *)
+        IF DiscreteTransferFcn1_icLoad <> 0 THEN 
+            DiscreteTransferFcn1_states := InitU;
         END_IF;
-        (* Outport: '<Root>/fPositionReferance_m' incorporates:
-         *  DiscreteIntegrator: '<S1>/Discrete-Time Integrator' *)
-        fPositionReferance_m := c_DiscreteTimeIntegrator_DS;
-        (* Update for DiscreteIntegrator: '<S1>/Discrete-Time Integrator' *)
-        c_DiscreteTimeIntegrator_IC := 0;
-        c_DiscreteTimeIntegrator_DS := (0.001 * fVelocityReferance_ms) + c_DiscreteTimeIntegrator_DS;
-        IF c_DiscreteTimeIntegrator_DS > 0.45 THEN 
-            c_DiscreteTimeIntegrator_DS := 0.45;
-        ELSIF c_DiscreteTimeIntegrator_DS < 0.0 THEN 
-            c_DiscreteTimeIntegrator_DS := 0.0;
+        u_Filtered := NumU * DiscreteTransferFcn1_states;
+        (* End of DiscreteTransferFcn: '<S5>/Discrete Transfer Fcn1' *)
+        
+        (* SampleTimeMath: '<S8>/TSamp' incorporates:
+         *  DiscreteTransferFcn: '<S6>/Discrete Transfer Fcn'
+         *
+         * About '<S8>/TSamp':
+         *  y = u * K where K = 1 / ( w * Ts )
+         *   *)
+        rtb_TSamp := (0.0009995 * DiscreteTransferFcn_states) * 1000.0;
+        (* Switch: '<S1>/Switch' incorporates:
+         *  Constant: '<S1>/Constant'
+         *  DiscreteIntegrator: '<S6>/Discrete-Time Integrator'
+         *  Outport: '<Root>/Error'
+         *  Product: '<S6>/Product'
+         *  Product: '<S6>/Product1'
+         *  Product: '<S6>/Product2'
+         *  Sum: '<S6>/Sum1'
+         *  Sum: '<S8>/Diff'
+         *  UnitDelay: '<S8>/UD'
+         *
+         * Block description for '<S8>/Diff':
+         *  
+         *  Add in CPU
+         *
+         * Block description for '<S8>/UD':
+         *  
+         *  Store in Global RAM *)
+        IF bEnablePID THEN 
+            U := ((Kp * Error) + (Ki * c_DiscreteTimeIntegrator_DS)) + ((rtb_TSamp - UD_DSTATE) * Kd);
+        ELSE 
+            U := 0.0;
         END_IF;
-        (* End of Update for DiscreteIntegrator: '<S1>/Discrete-Time Integrator' *)
-        (* End of Outputs for SubSystem: '<Root>/FB_Joystick' *)
+        (* End of Switch: '<S1>/Switch' *)
+        
+        (* Saturate: '<S1>/Saturation1' *)
+        IF U > 1.0 THEN 
+            PID_OUT := 1.0;
+        ELSIF U >= -1.0 THEN 
+            PID_OUT := U;
+        ELSE 
+            PID_OUT := -1.0;
+        END_IF;
+        (* End of Saturate: '<S1>/Saturation1' *)
+        
+        (* Switch: '<S1>/Switch1' incorporates:
+         *  Constant: '<S1>/Constant1'
+         *  Sum: '<S1>/Sum' *)
+        IF bEnableU THEN 
+            U := u_Filtered + PID_OUT;
+        ELSE 
+            U := 0.0;
+        END_IF;
+        (* End of Switch: '<S1>/Switch1' *)
+        
+        (* Saturate: '<S1>/Saturation' *)
+        IF U > 1.0 THEN 
+            (* Outport: '<Root>/U' *)
+            U := 1.0;
+        ELSIF U < -1.0 THEN 
+            (* Outport: '<Root>/U' *)
+            U := -1.0;
+        END_IF;
+        (* End of Saturate: '<S1>/Saturation' *)
+        
+        (* SignalConversion: '<S2>/TmpSignal ConversionAtDiscrete Transfer Fcn1Inport3' *)
+        d_TmpSignalConversionAtDisc[0] := DenPz;
+        d_TmpSignalConversionAtDisc[1] := DenP;
+        (* DiscreteTransferFcn: '<S2>/Discrete Transfer Fcn1' *)
+        IF b_DiscreteTransferFcn1_icLo <> 0 THEN 
+            b_DiscreteTransferFcn1_stat := InitialP;
+        END_IF;
+        Ps_Filtered := NumP * b_DiscreteTransferFcn1_stat;
+        (* End of DiscreteTransferFcn: '<S2>/Discrete Transfer Fcn1' *)
+        
+        (* DiscreteTransferFcn: '<S3>/Discrete Transfer Fcn1' *)
+        IF c_DiscreteTransferFcn1_icLo <> 0 THEN 
+            c_DiscreteTransferFcn1_stat := InitialP;
+        END_IF;
+        Pa_Filtered := NumP * c_DiscreteTransferFcn1_stat;
+        (* End of DiscreteTransferFcn: '<S3>/Discrete Transfer Fcn1' *)
+        
+        (* DiscreteTransferFcn: '<S4>/Discrete Transfer Fcn1' *)
+        IF d_DiscreteTransferFcn1_icLo <> 0 THEN 
+            d_DiscreteTransferFcn1_stat := InitialP;
+        END_IF;
+        Pb_Filtered := NumP * d_DiscreteTransferFcn1_stat;
+        (* End of DiscreteTransferFcn: '<S4>/Discrete Transfer Fcn1' *)
+        
+        (* MATLAB Function: '<S1>/V2Q2u' incorporates:
+         *  Outport: '<Root>/Pa_Filtered'
+         *  Outport: '<Root>/Pb_Filtered'
+         *  Outport: '<Root>/Ps_Filtered' *)
+        (* MATLAB Function 'FB_ControlBlockWithMonitoring/V2Q2u': '<S7>:1' *)
+        (* '<S7>:1:3' phi = 0.7130; *)
+        (* '<S7>:1:4' A = 33.1/100^2; *)
+        (* Area *)
+        (* '<S7>:1:5' BW = 0; *)
+        (* deadband *)
+        (* '<S7>:1:6' SpoolTravel = 7; *)
+        (* Maximum Spool Travel *)
+        (* '<S7>:1:7' a = (SpoolTravel-BW)/25; *)
+        (* Valve Slope Characteristic [mm/(L/min)] *)
+        (* '<S7>:1:8' dP_0 = 7e5; *)
+        (* Pressure drop with compansator *)
+        (* '<S7>:1:10' if x_dot > 0 *)
+        IF X_dot > 0.0 THEN 
+            (* '<S7>:1:11' Q = x_dot * A; *)
+            (* Wanted Flow *)
+            (* '<S7>:1:12' dP = (Ps-Pa)*1e5; *)
+            (* '<S7>:1:13' dp_ref = abs(dP_0/dP); *)
+            (* dp_ref = 1; *)
+            (* '<S7>:1:15' Q_star = (Q * sqrt(dp_ref)) * 6e4; *)
+            (* Referance Flow [L/min] *)
+            (* '<S7>:1:16' u = (Q_star * a + BW)/SpoolTravel; *)
+            temp2 := ABS(700000.0 / ((Ps_Filtered - Pa_Filtered) * 100000.0));
+            u_Unfiltered := (((SQRT(temp2) * (X_dot * 0.00331)) * 60000.0) * 0.28) / 7.0;
+            (* Control Signal [-1, 1] *)
+        ELSIF X_dot < 0.0 THEN 
+            (* '<S7>:1:18' elseif x_dot < 0 *)
+            (* '<S7>:1:19' Q = x_dot * (A*phi); *)
+            (* Wanted Flow *)
+            (* '<S7>:1:20' dP = (Ps-Pb)*1e5; *)
+            (* '<S7>:1:21' dp_ref = abs(dP_0/dP); *)
+            (* dp_ref = 1; *)
+            (* '<S7>:1:23' Q_star = (Q * sqrt(dp_ref)) * 6e4; *)
+            (* Referance Flow [L/min] *)
+            (* '<S7>:1:24' u = (Q_star * a - BW)/SpoolTravel; *)
+            temp1 := ABS(700000.0 / ((Ps_Filtered - Pb_Filtered) * 100000.0));
+            u_Unfiltered := (((SQRT(temp1) * (X_dot * 0.00236003)) * 60000.0) * 0.28) / 7.0;
+            (* Control Signal [-1, 1] *)
+        ELSE 
+            (* '<S7>:1:26' else *)
+            (* '<S7>:1:27' u = 0; *)
+            u_Unfiltered := 0.0;
+        END_IF;
+        (* End of MATLAB Function: '<S1>/V2Q2u' *)
+        
+        (* SignalConversion: '<S1>/Pa' incorporates:
+         *  Outport: '<Root>/Pa_Unfiltered' *)
+        Pa_Unfiltered := Pa;
+        (* SignalConversion: '<S1>/Pb' incorporates:
+         *  Outport: '<Root>/Pb_Unfiltered' *)
+        Pb_Unfiltered := Pb;
+        (* SignalConversion: '<S1>/Ps' incorporates:
+         *  Outport: '<Root>/Ps_Unfiltered' *)
+        Ps_Unfiltered := Ps;
+        (* Saturate: '<S1>/Saturation2' incorporates:
+         *  Outport: '<Root>/u_Unfiltered' *)
+        IF u_Unfiltered > 1.0 THEN 
+            u_Unfiltered := 1.0;
+        ELSIF u_Unfiltered < -1.0 THEN 
+            u_Unfiltered := -1.0;
+        END_IF;
+        (* End of Saturate: '<S1>/Saturation2' *)
+        
+        (* Update for DiscreteTransferFcn: '<S5>/Discrete Transfer Fcn1' incorporates:
+         *  Outport: '<Root>/u_Unfiltered' *)
+        DiscreteTransferFcn1_icLoad := 0;
+        DiscreteTransferFcn1_states := u_Unfiltered - (c_TmpSignalConversionAtDisc[1] * DiscreteTransferFcn1_states);
+        (* Update for DiscreteTransferFcn: '<S6>/Discrete Transfer Fcn' incorporates:
+         *  Outport: '<Root>/Error' *)
+        DiscreteTransferFcn_states := Error - (-0.999 * DiscreteTransferFcn_states);
+        (* Update for DiscreteIntegrator: '<S6>/Discrete-Time Integrator' incorporates:
+         *  Outport: '<Root>/Error' *)
+        c_DiscreteTimeIntegrator_DS := (0.001 * Error) + c_DiscreteTimeIntegrator_DS;
+        (* Update for UnitDelay: '<S8>/UD'
+         *
+         * Block description for '<S8>/UD':
+         *  
+         *  Store in Global RAM *)
+        UD_DSTATE := rtb_TSamp;
+        (* Update for DiscreteTransferFcn: '<S2>/Discrete Transfer Fcn1' incorporates:
+         *  SignalConversion: '<S1>/Ps' *)
+        b_DiscreteTransferFcn1_icLo := 0;
+        b_DiscreteTransferFcn1_stat := Ps - (d_TmpSignalConversionAtDisc[1] * b_DiscreteTransferFcn1_stat);
+        (* Update for DiscreteTransferFcn: '<S3>/Discrete Transfer Fcn1' incorporates:
+         *  SignalConversion: '<S1>/Pa' *)
+        c_DiscreteTransferFcn1_icLo := 0;
+        c_DiscreteTransferFcn1_stat := Pa - (d_TmpSignalConversionAtDisc[1] * c_DiscreteTransferFcn1_stat);
+        (* Update for DiscreteTransferFcn: '<S4>/Discrete Transfer Fcn1' incorporates:
+         *  SignalConversion: '<S1>/Pb' *)
+        d_DiscreteTransferFcn1_icLo := 0;
+        d_DiscreteTransferFcn1_stat := Pb - (d_TmpSignalConversionAtDisc[1] * d_DiscreteTransferFcn1_stat);
+        (* End of Outputs for SubSystem: '<Root>/FB_ControlBlockWithMonitoring' *)
 END_CASE;
 END_FUNCTION_BLOCK
 VAR_GLOBAL CONSTANT

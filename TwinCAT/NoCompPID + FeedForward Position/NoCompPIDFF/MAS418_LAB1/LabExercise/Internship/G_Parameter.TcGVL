@@ -19,6 +19,7 @@ VAR_GLOBAL
 	fSignalFilterNum :LREAL := 0.09516;
 	fSignalFilterDenz : LREAL := 1.0;
 	fSignalFilterDen : LREAL := -0.9048;
+	fSignalFilterInit : LREAL := 0;
 	
 END_VAR]]></Declaration>
   </GVL>

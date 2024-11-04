@@ -7,7 +7,6 @@ VAR
 	fbMotionRef : FB_MotionReference;
 	fbJoyRef : FB_Joystick_2;
 	fbClock : FB_Clock;
-	fbRunClock : FB_RunClock;
 	fbInitialPos : FB_InitialPos;
 	fbInitialPa : FB_InitialPressure;
 	fbInitialPb : FB_InitialPressure;
@@ -17,12 +16,6 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[fbClock(
-	bStart := G_Inputs.bStartButton,
-	bStop := G_Inputs.bStopButton,
-	fCycleTime :=0.001
-);
-
-fbRunClock(
 	bStart := G_Inputs.bStartButton,
 	bStop := G_Inputs.bStopButton,
 	fCycleTime :=0.001
@@ -81,9 +74,9 @@ IF (G_Work.eMode = E_Mode.Auto) THEN
 		Pb := G_Sensors.fPressureRodSide,
 		Ps := G_Sensors.fPressureSupply,
 		
-		Kp := G_Parameter.Kp,
-		Ki := G_Parameter.Ki,
-		Kd := G_Parameter.Kd,
+		InitialPs := fbInitialPs.fCurrentPressure,
+		InitialPa := fbInitialPa.fCurrentPressure,
+		InitialPb := fbInitialPb.fCurrentPressure,
 		
 		U	=> G_Work.fControlOutputNormalized
 	);
@@ -112,26 +105,21 @@ ELSIF (G_Work.eMode = E_Mode.Manual) THEN
 	Pb := G_Sensors.fPressureRodSide,
 	Ps:= G_Sensors.fPressureSupply,
 	
-	Kp := G_Parameter.Kp,
-	Ki := G_Parameter.Ki,
-	Kd := G_Parameter.Kd,
+	InitialPs := fbInitialPs.fCurrentPressure,
+	InitialPa := fbInitialPa.fCurrentPressure,
+	InitialPb := fbInitialPb.fCurrentPressure,
 	
 	U	=> G_Work.fControlOutputNormalized
 	);
 	
 END_IF
-END_IF
+
 
 ]]></ST>
     </Implementation>
     <LineIds Name="P_ControlBlock">
       <LineId Id="122" Count="3" />
       <LineId Id="120" Count="0" />
-      <LineId Id="239" Count="0" />
-      <LineId Id="238" Count="0" />
-      <LineId Id="242" Count="1" />
-      <LineId Id="241" Count="0" />
-      <LineId Id="240" Count="0" />
       <LineId Id="171" Count="0" />
       <LineId Id="170" Count="0" />
       <LineId Id="174" Count="1" />
@@ -163,8 +151,7 @@ END_IF
       <LineId Id="134" Count="0" />
       <LineId Id="67" Count="5" />
       <LineId Id="136" Count="0" />
-      <LineId Id="138" Count="1" />
-      <LineId Id="137" Count="0" />
+      <LineId Id="271" Count="2" />
       <LineId Id="140" Count="0" />
       <LineId Id="73" Count="0" />
       <LineId Id="50" Count="1" />
@@ -184,7 +171,7 @@ END_IF
       <LineId Id="146" Count="2" />
       <LineId Id="76" Count="5" />
       <LineId Id="145" Count="0" />
-      <LineId Id="143" Count="1" />
+      <LineId Id="274" Count="1" />
       <LineId Id="141" Count="1" />
       <LineId Id="82" Count="0" />
       <LineId Id="64" Count="0" />
