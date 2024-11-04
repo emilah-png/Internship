@@ -166,6 +166,10 @@
     <Compile Include="Internship\F_PressureSensorInToBar.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Internship\G_OPC_UA.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="Internship\G_Parameter.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>

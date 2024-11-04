@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="G_OPC_UA" Id="{e0c47801-e0b6-4c4d-ac2a-07962aa9fa43}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	fXRef : LREAL;
+	fXDotRef : LREAL;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>
