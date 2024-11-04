@@ -3,10 +3,9 @@
   <POU Name="P_OutputNonCompensated" Id="{91e8730f-330f-4841-8441-0d9eae6d44e6}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM P_OutputNonCompensated
 VAR
-	{attribute 'OPC.UA.DA' := '1'}
 	fbValueInput 	: V2Q2u;
 END_VAR
-]]></Declaration>
+ ]]></Declaration>
     <Implementation>
       <ST><![CDATA[fbValueInput(
 	Ps 	:= G_Sensors.fPressureSupply,

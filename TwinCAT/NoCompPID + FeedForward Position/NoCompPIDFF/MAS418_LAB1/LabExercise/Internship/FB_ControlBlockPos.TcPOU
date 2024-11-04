@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_ControlBlockPos" Id="{581b1044-d627-4f64-ad6f-f3930a7c4d8e}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_ControlBlockPos
 VAR_INPUT
@@ -29,6 +29,8 @@ VAR
 	DiscreteTransferFcn3_states: LREAL;
 	c_DiscreteTransferFcn_state: LREAL;
 	UD_DSTATE: LREAL;
+	bEnablePID : BOOL;
+	bEnableU : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -62,6 +64,15 @@ CASE ssMethodType OF
         Sum1 := X - X_real;
         (* DiscreteTransferFcn: '<S1>/Discrete Transfer Fcn' *)
         rtb_DiscreteTransferFcn := 0.09516 * DiscreteTransferFcn_states;
+		IF (rtb_DiscreteTransferFcn > 1.0) THEN
+				
+				rtb_DiscreteTransferFcn := 1.0;
+				
+			ELSIF (rtb_DiscreteTransferFcn < -1.0) THEN
+				
+				rtb_DiscreteTransferFcn := -1;
+				
+			END_IF
         (* DiscreteTransferFcn: '<S1>/Discrete Transfer Fcn1' *)
         DiscreteTransferFcn1 := 0.003137 * DiscreteTransferFcn1_states;
         (* SampleTimeMath: '<S4>/TSamp' incorporates:
@@ -84,7 +95,21 @@ CASE ssMethodType OF
          * Block description for '<S4>/UD':
          *  
          *  Store in Global RAM *)
-        rtb_Sum1 := ((2.0 * Sum1) + c_DiscreteTimeIntegrator_DS) + (rtb_TSamp - UD_DSTATE);
+		IF (bEnablePID) THEN
+        	rtb_Sum1 := ((2.0 * Sum1) + 0.0 * c_DiscreteTimeIntegrator_DS) + 0.0 * (rtb_TSamp - UD_DSTATE);
+			
+			IF (rtb_Sum1 > 1.0) THEN
+				
+				rtb_Sum1 := 1.0;
+				
+			ELSIF (rtb_Sum1 < -1.0) THEN
+				
+				rtb_Sum1 := -1;
+				
+			END_IF
+		ELSE
+			rtb_Sum1 := 0.0;
+		END_IF
         (* MATLAB Function: '<S1>/V2Q2u' incorporates:
          *  DiscreteTransferFcn: '<S1>/Discrete Transfer Fcn2'
          *  DiscreteTransferFcn: '<S1>/Discrete Transfer Fcn3' *)
@@ -155,8 +180,24 @@ CASE ssMethodType OF
          *  Store in Global RAM *)
         UD_DSTATE := rtb_TSamp;
         (* Outport: '<Root>/u' incorporates:
-         *  Sum: '<S1>/Sum' *)
-        u := rtb_DiscreteTransferFcn + rtb_Sum1;
+         *  Sum: '<S1>/Sum' *)		
+		IF (bEnableU) THEN
+			
+			u := rtb_DiscreteTransferFcn + rtb_Sum1;
+			
+			IF (u > 1.0) THEN
+				
+				u := 1.0;
+				
+			ELSIF (u < -1.0) THEN
+				
+				u := -1;
+				
+			END_IF
+		ELSE
+			u := 0.0;
+		END_IF
+        
         (* End of Outputs for SubSystem: '<Root>/CTRL' *)
 END_CASE;
 
@@ -164,7 +205,36 @@ END_CASE;
 ]]></ST>
     </Implementation>
     <LineIds Name="FB_ControlBlockPos">
-      <LineId Id="3" Count="128" />
+      <LineId Id="3" Count="27" />
+      <LineId Id="197" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="207" Count="7" />
+      <LineId Id="206" Count="0" />
+      <LineId Id="33" Count="21" />
+      <LineId Id="165" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="187" Count="0" />
+      <LineId Id="189" Count="7" />
+      <LineId Id="188" Count="0" />
+      <LineId Id="167" Count="1" />
+      <LineId Id="166" Count="0" />
+      <LineId Id="56" Count="69" />
+      <LineId Id="169" Count="0" />
+      <LineId Id="173" Count="0" />
+      <LineId Id="181" Count="0" />
+      <LineId Id="177" Count="0" />
+      <LineId Id="180" Count="0" />
+      <LineId Id="174" Count="0" />
+      <LineId Id="182" Count="0" />
+      <LineId Id="175" Count="0" />
+      <LineId Id="183" Count="0" />
+      <LineId Id="178" Count="0" />
+      <LineId Id="185" Count="0" />
+      <LineId Id="179" Count="0" />
+      <LineId Id="186" Count="0" />
+      <LineId Id="176" Count="0" />
+      <LineId Id="171" Count="1" />
+      <LineId Id="126" Count="5" />
       <LineId Id="2" Count="0" />
     </LineIds>
   </POU>

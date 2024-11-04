@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="P_ControlBlock" Id="{1c742f8d-99bf-4aa1-ba99-fa370ccce2ab}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM P_ControlBlock
 VAR
@@ -13,7 +13,7 @@ END_VAR
       <ST><![CDATA[	fbClock(
 		bStart := G_Inputs.bStartButton,
 		bStop := G_Inputs.bStopButton,
-		fCycleTime :=0.00001
+		fCycleTime :=0.001
 	);
 
 IF (G_Work.eMode = E_Mode.Auto) THEN
