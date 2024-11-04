@@ -4,14 +4,16 @@
     <Declaration><![CDATA[FUNCTION_BLOCK FB_ControlBlockWithMonito
 VAR_INPUT
 	ssMethodType: SINT;
+	bEnableU: LREAL;
+	bEnablePID: LREAL;
+	
 	Ps: LREAL;
 	Pa: LREAL;
 	Pb: LREAL;
 	X_real: LREAL;
 	X: LREAL;
 	X_dot: LREAL;
-	bEnableU: LREAL;
-	bEnablePID: LREAL;
+	
 	Kp: LREAL;
 	Ki: LREAL;
 	Kd: LREAL;

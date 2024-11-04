@@ -3,7 +3,7 @@
   <POU Name="P_ControlBlock" Id="{1c742f8d-99bf-4aa1-ba99-fa370ccce2ab}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM P_ControlBlock
 VAR
-	fbControlBlock : FB_ControlBlockPos;
+	fbControlBlock : FB_ControlBlockWithMonito;
 	fbMotionRef : FB_MotionReference;
 	fbJoyRef : FB_JoyRef;
 	fbClock : FB_Clock;
@@ -33,12 +33,20 @@ IF (G_Work.eMode = E_Mode.Auto) THEN
 	
 	fbControlBlock(
 		ssMethodType := BOOL_TO_SINT(G_Work.eStatus = E_Status.Running),
+		bEnablePID := G_Parameter.bEnablePID,
+		bEnableU := G_Parameter.bEnableU,
+		
 		X_real:= G_Sensors.fPistonPosition,
 		X_dot := fbMotionRef.fVelocityReference_ms,
 		X := fbMotionRef.fPositionReference_m,
 		Pa:= G_Sensors.fPressurePistonSide, 
 		Pb := G_Sensors.fPressureRodSide,
 		Ps:= G_Sensors.fPressureSupply,
+		
+		Kp := G_Parameter.Kp,
+		Ki := G_Parameter.Ki,
+		Kd := G_Parameter.Kd,
+		
 		u	=> G_Work.fControlOutputNormalized
 	);
 
@@ -74,7 +82,16 @@ END_IF
       <LineId Id="36" Count="0" />
       <LineId Id="35" Count="0" />
       <LineId Id="85" Count="1" />
-      <LineId Id="65" Count="8" />
+      <LineId Id="65" Count="1" />
+      <LineId Id="133" Count="0" />
+      <LineId Id="135" Count="0" />
+      <LineId Id="134" Count="0" />
+      <LineId Id="67" Count="5" />
+      <LineId Id="136" Count="0" />
+      <LineId Id="138" Count="1" />
+      <LineId Id="137" Count="0" />
+      <LineId Id="140" Count="0" />
+      <LineId Id="73" Count="0" />
       <LineId Id="50" Count="1" />
       <LineId Id="33" Count="0" />
       <LineId Id="12" Count="0" />

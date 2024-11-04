@@ -166,7 +166,7 @@
     <Compile Include="Internship\F_PressureSensorInToBar.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Internship\GVL.TcGVL">
+    <Compile Include="Internship\G_Parameter.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
