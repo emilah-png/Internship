@@ -154,13 +154,16 @@
     <Compile Include="Internship\FB_InitialPos.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Internship\FB_InitialPressure.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Internship\FB_JoystickRef.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Internship\FB_Joystick_1.TcPOU">
+    <Compile Include="Internship\FB_Joystick_2.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Internship\FB_Joystick_2.TcPOU">
+    <Compile Include="Internship\FB_RunClock.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Internship\FB_MotionReference.TcPOU">
@@ -213,6 +216,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Programs\P_Inputs.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Programs\P_IntialPressure.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Programs\P_OutputNonCompensated.TcPOU">

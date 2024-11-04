@@ -7,7 +7,12 @@ VAR
 	fbMotionRef : FB_MotionReference;
 	fbJoyRef : FB_Joystick_2;
 	fbClock : FB_Clock;
+	fbRunClock : FB_RunClock;
 	fbInitialPos : FB_InitialPos;
+	fbInitialPa : FB_InitialPressure;
+	fbInitialPb : FB_InitialPressure;
+	fbInitialPs : FB_InitialPressure;
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -17,10 +22,34 @@ END_VAR
 	fCycleTime :=0.001
 );
 
+fbRunClock(
+	bStart := G_Inputs.bStartButton,
+	bStop := G_Inputs.bStopButton,
+	fCycleTime :=0.001
+);
+
 fbInitialPos(
 	bEnable := (G_Work.eStatus = E_Status.Running),
 	fCurrentPos := G_Sensors.fPistonPosition,
 );
+
+fbInitialPa(
+	bEnable := (G_Work.eStatus = E_Status.Running),
+	fCurrentPressure := G_Sensors.fPressurePistonSide,
+);
+
+fbInitialPb(
+	bEnable := (G_Work.eStatus = E_Status.Running),
+	fCurrentPressure := G_Sensors.fPressureRodSide,
+);
+
+fbInitialPs(
+	bEnable := (G_Work.eStatus = E_Status.Running),
+	fCurrentPressure := G_Sensors.fPressureSupply,
+);
+
+
+
 
 IF (G_Work.eMode = E_Mode.Auto) THEN
 	
@@ -48,9 +77,9 @@ IF (G_Work.eMode = E_Mode.Auto) THEN
 		X_real:= G_Sensors.fPistonPosition,
 		X_dot := fbMotionRef.fVelocityReference_ms,
 		X := fbMotionRef.fPositionReference_m,
-		Pa:= G_Sensors.fPressurePistonSide, 
+		Pa := G_Sensors.fPressurePistonSide, 
 		Pb := G_Sensors.fPressureRodSide,
-		Ps:= G_Sensors.fPressureSupply,
+		Ps := G_Sensors.fPressureSupply,
 		
 		Kp := G_Parameter.Kp,
 		Ki := G_Parameter.Ki,
@@ -89,7 +118,8 @@ ELSIF (G_Work.eMode = E_Mode.Manual) THEN
 	
 	U	=> G_Work.fControlOutputNormalized
 	);
-
+	
+END_IF
 END_IF
 
 ]]></ST>
@@ -97,11 +127,28 @@ END_IF
     <LineIds Name="P_ControlBlock">
       <LineId Id="122" Count="3" />
       <LineId Id="120" Count="0" />
+      <LineId Id="239" Count="0" />
+      <LineId Id="238" Count="0" />
+      <LineId Id="242" Count="1" />
+      <LineId Id="241" Count="0" />
+      <LineId Id="240" Count="0" />
       <LineId Id="171" Count="0" />
       <LineId Id="170" Count="0" />
       <LineId Id="174" Count="1" />
       <LineId Id="173" Count="0" />
-      <LineId Id="121" Count="0" />
+      <LineId Id="222" Count="0" />
+      <LineId Id="221" Count="0" />
+      <LineId Id="225" Count="1" />
+      <LineId Id="223" Count="0" />
+      <LineId Id="228" Count="3" />
+      <LineId Id="227" Count="0" />
+      <LineId Id="236" Count="0" />
+      <LineId Id="233" Count="2" />
+      <LineId Id="232" Count="0" />
+      <LineId Id="249" Count="0" />
+      <LineId Id="256" Count="0" />
+      <LineId Id="245" Count="0" />
+      <LineId Id="248" Count="0" />
       <LineId Id="99" Count="0" />
       <LineId Id="152" Count="2" />
       <LineId Id="158" Count="0" />
@@ -141,8 +188,9 @@ END_IF
       <LineId Id="141" Count="1" />
       <LineId Id="82" Count="0" />
       <LineId Id="64" Count="0" />
-      <LineId Id="63" Count="0" />
+      <LineId Id="193" Count="0" />
       <LineId Id="11" Count="0" />
+      <LineId Id="257" Count="0" />
       <LineId Id="53" Count="0" />
       <LineId Id="52" Count="0" />
     </LineIds>
