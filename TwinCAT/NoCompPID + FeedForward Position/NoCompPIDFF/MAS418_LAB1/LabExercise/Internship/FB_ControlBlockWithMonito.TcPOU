@@ -4,8 +4,8 @@
     <Declaration><![CDATA[FUNCTION_BLOCK FB_ControlBlockWithMonito
 VAR_INPUT
 	ssMethodType: SINT;
-	bEnableU: LREAL;
-	bEnablePID: LREAL;
+	bEnableU: BOOL;
+	bEnablePID: BOOL;
 	
 	Ps: LREAL;
 	Pa: LREAL;
@@ -108,7 +108,7 @@ CASE ssMethodType OF
          *  
          *  Store in Global RAM *)
 
-        IF bEnablePID > 0.0 THEN 
+        IF bEnablePID THEN 
             U := ((Kp * Error) + (Ki * c_DiscreteTimeIntegrator_DS)) + ((rtb_TSamp - UD_DSTATE) * Kd);
         ELSE 
             U := 0.0;
@@ -134,7 +134,7 @@ CASE ssMethodType OF
          *  Constant: '<S1>/Constant1'
          *  Sum: '<S1>/Sum' *)
 
-        IF bEnableU > 0.0 THEN 
+        IF bEnableU THEN 
             U := u_Filtered + PID_OUT;
         ELSE 
             U := 0.0;

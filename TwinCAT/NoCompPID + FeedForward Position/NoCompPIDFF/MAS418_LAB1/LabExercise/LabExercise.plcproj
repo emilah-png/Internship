@@ -145,25 +145,25 @@
     <Compile Include="Inputs\Struct\ST_AnalogInputStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Internship\c_FB_ControlBlockWithMonito.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Internship\FB_ControlBlockWithMonito.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Internship\FB_ControlBlockPos.TcPOU">
+    <Compile Include="Internship\FB_InitialPos.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Internship\FB_JoyRef.TcPOU">
+    <Compile Include="Internship\FB_JoystickRef.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Internship\FB_Joystick_1.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Internship\FB_Joystick_2.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Internship\FB_MotionReference.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Internship\FB_ControlBlockspd.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Internship\FB_SpeedProfile.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Internship\F_PressureSensorInToBar.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Internship\G_OPC_UA.TcGVL">
@@ -175,9 +175,6 @@
       <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="Internship\G_ControlInit.TcGVL">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Internship\V2Q2u.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Outputs\FB_ValveOutput.TcPOU">
