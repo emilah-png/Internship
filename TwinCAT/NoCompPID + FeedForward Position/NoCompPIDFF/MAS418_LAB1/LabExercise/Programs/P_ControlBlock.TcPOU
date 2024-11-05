@@ -11,6 +11,7 @@ VAR
 	fbInitialPa : FB_InitialPressure;
 	fbInitialPb : FB_InitialPressure;
 	fbInitialPs : FB_InitialPressure;
+	InitialPa : LREAL;
 	
 END_VAR
 ]]></Declaration>
@@ -41,8 +42,7 @@ fbInitialPs(
 	fCurrentPressure := G_Sensors.fPressureSupply,
 );
 
-
-
+//InitialPa := fbInitialPa.fCurrentPressure;
 
 IF (G_Work.eMode = E_Mode.Auto) THEN
 	
@@ -62,6 +62,8 @@ IF (G_Work.eMode = E_Mode.Auto) THEN
 	);
 	
 	
+
+	
 	fbControlBlock(
 		ssMethodType := BOOL_TO_SINT(G_Work.eStatus = E_Status.Running),
 		bEnablePID := G_Parameter.bEnablePID,
@@ -75,7 +77,7 @@ IF (G_Work.eMode = E_Mode.Auto) THEN
 		Ps := G_Sensors.fPressureSupply,
 		
 		InitialPs := fbInitialPs.fCurrentPressure,
-		InitialPa := fbInitialPa.fCurrentPressure,
+		InitialPa := InitialPa,
 		InitialPb := fbInitialPb.fCurrentPressure,
 		
 		U	=> G_Work.fControlOutputNormalized
@@ -135,7 +137,6 @@ END_IF
       <LineId Id="232" Count="0" />
       <LineId Id="249" Count="0" />
       <LineId Id="256" Count="0" />
-      <LineId Id="245" Count="0" />
       <LineId Id="248" Count="0" />
       <LineId Id="99" Count="0" />
       <LineId Id="152" Count="2" />
@@ -145,12 +146,13 @@ END_IF
       <LineId Id="36" Count="0" />
       <LineId Id="35" Count="0" />
       <LineId Id="85" Count="1" />
+      <LineId Id="290" Count="1" />
       <LineId Id="65" Count="1" />
       <LineId Id="133" Count="0" />
       <LineId Id="135" Count="0" />
       <LineId Id="134" Count="0" />
       <LineId Id="67" Count="5" />
-      <LineId Id="136" Count="0" />
+      <LineId Id="288" Count="0" />
       <LineId Id="271" Count="2" />
       <LineId Id="140" Count="0" />
       <LineId Id="73" Count="0" />
