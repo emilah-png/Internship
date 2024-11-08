@@ -174,7 +174,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{E0934695-7C3D-4F8B-B148-FD256502155A}" Name="LabExercise" PrjFilePath="LabExercise\LabExercise.plcproj" TmcFilePath="LabExercise\LabExercise.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" CopyTmcToTarget="true" CopyTpyToTarget="false" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="LabExercise\LabExercise.tmc" TmcHash="{9BF34825-FB06-3C03-CACB-ADEF683E63CB}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="LabExercise\LabExercise.tmc" TmcHash="{9E8DB660-9A61-BFA7-C96D-390A1E211ABE}">
 					<Name>LabExercise Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1" ContextId="1" AreaNo="16">

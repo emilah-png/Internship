@@ -148,6 +148,9 @@
     <Compile Include="Internship\c_FB_ControlBlockWithMonito.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Internship\FB_Filtering.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Internship\FB_InitialPos.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -165,6 +168,10 @@
     </Compile>
     <Compile Include="Internship\FB_MotionReference.TcPOU">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Internship\G_Filtered.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="Internship\G_OPC_UA.TcGVL">
       <SubType>Code</SubType>
@@ -210,6 +217,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Programs\P_CraneControl.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Programs\P_Filtering.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Programs\P_Inputs.TcPOU">
