@@ -37,6 +37,7 @@ IF (G_Work.eMode = E_Mode.Auto) THEN
 		fHoldPositionTime_s := G_Parameter.fHoldPositionTime_s,
 		fClock_s:= fbClock.fTime,
 		bEnable:= G_Inputs.bStartButton
+		
 	);
 	
 	
@@ -62,7 +63,12 @@ IF (G_Work.eMode = E_Mode.Auto) THEN
 		u_filtered := G_Filtered.fValveOutputFiltered,
 		
 		u_Unfiltered => G_Filtered.fValveOutputUnfiltered,
-		U	=> G_Work.fControlOutputNormalized
+		u_Unfiltered => G_OPC_UA.fUnfilteredSignal,
+		
+		U	=> G_Work.fControlOutputNormalized,
+		U	=> G_OPC_UA.fU,
+		
+		Error => G_OPC_UA.Error
 	);
 
 ELSIF (G_Work.eMode = E_Mode.Manual) THEN
@@ -97,8 +103,12 @@ ELSIF (G_Work.eMode = E_Mode.Manual) THEN
 	u_filtered := G_Filtered.fValveOutputFiltered,
 		
 	u_Unfiltered => G_Filtered.fValveOutputUnfiltered,
+	u_Unfiltered => G_OPC_UA.fUnfilteredSignal,
 	
-	U	=> G_Work.fControlOutputNormalized
+	U	=> G_Work.fControlOutputNormalized,
+	U	=> G_OPC_UA.fU,
+	
+	Error => G_OPC_UA.Error
 	);
 END_IF
 
@@ -119,6 +129,7 @@ END_IF
       <LineId Id="32" Count="0" />
       <LineId Id="37" Count="7" />
       <LineId Id="36" Count="0" />
+      <LineId Id="420" Count="0" />
       <LineId Id="35" Count="0" />
       <LineId Id="85" Count="1" />
       <LineId Id="290" Count="1" />
@@ -135,7 +146,11 @@ END_IF
       <LineId Id="377" Count="0" />
       <LineId Id="288" Count="0" />
       <LineId Id="140" Count="0" />
+      <LineId Id="432" Count="0" />
+      <LineId Id="434" Count="0" />
       <LineId Id="73" Count="0" />
+      <LineId Id="433" Count="0" />
+      <LineId Id="435" Count="1" />
       <LineId Id="50" Count="1" />
       <LineId Id="33" Count="0" />
       <LineId Id="159" Count="0" />
@@ -160,8 +175,11 @@ END_IF
       <LineId Id="408" Count="0" />
       <LineId Id="410" Count="1" />
       <LineId Id="409" Count="0" />
+      <LineId Id="422" Count="0" />
       <LineId Id="142" Count="0" />
       <LineId Id="82" Count="0" />
+      <LineId Id="423" Count="0" />
+      <LineId Id="437" Count="1" />
       <LineId Id="64" Count="0" />
       <LineId Id="11" Count="0" />
       <LineId Id="257" Count="0" />

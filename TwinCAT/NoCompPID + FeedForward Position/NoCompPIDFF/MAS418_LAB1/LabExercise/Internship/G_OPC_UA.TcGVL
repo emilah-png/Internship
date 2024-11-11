@@ -5,26 +5,26 @@
 VAR_GLOBAL
 
 	// Mesurements for OPC
-	fXRef : LREAL;
+	fXRef : LREAL ;
 	fXDotRef : LREAL;
-	fXReal : LREAL := G_Sensors.fPistonPosition;
+	fXReal : LREAL ;
 	
 	PID_OUT : LREAL;
 	Error : LREAL;
 	
-	fPa : LREAL := G_Sensors.fPressurePistonSide;
-	fPb : LREAL := G_Sensors.fPressureRodSide;
-	fPs : LREAL := G_Sensors.fPressureSupply;
+	fPa : LREAL ;
+	fPb : LREAL ;
+	fPs : LREAL ;
 	
-	fPaFiltered : LREAL := G_Filtered.fPressurePistonSideFiltered;
-	fPbFiltered : LREAL := G_Filtered.fPressureRodSideFiltered;
-	fPsFiltered : LREAL := G_Filtered.fPressureSupplyFiltered;
+	fPaFiltered : LREAL ;
+	fPbFiltered : LREAL ;
+	fPsFiltered : LREAL ;
 	
-	fUnfilteredSignal : LREAL := G_Filtered.fValveOutputUnfiltered;
-	fFilteredSignal : LREAL := G_Filtered.fValveOutputFiltered;
+	fUnfilteredSignal : LREAL ;
+	fFilteredSignal : LREAL ;
 	
 	
-	fU : LREAL := G_Work.fControlOutputNormalized;
+	fU : LREAL ;
 	
 	fTime : LREAL;
 	

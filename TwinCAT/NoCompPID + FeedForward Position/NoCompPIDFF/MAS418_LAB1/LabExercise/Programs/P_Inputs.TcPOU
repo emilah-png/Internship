@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="P_Inputs" Id="{8b676dbd-393f-42d6-8803-330b6e90ab14}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM P_Inputs
 VAR
@@ -21,12 +21,14 @@ END_VAR
 
 fbPositionSensor(
 	nRawInput := G_Inputs.stCylPos.nValue,
-	fOutput => G_Sensors.fPistonPosition
+	fOutput => G_Sensors.fPistonPosition,
+	fOutput => G_OPC_UA.fXReal
 );
 
 fbPressureSupplySensor(
 	nRawInput := G_Inputs.stPressureSupply.nValue,
-	fOutput => G_Sensors.fPressureSupply
+	fOutput => G_Sensors.fPressureSupply,
+	fOutput => G_OPC_UA.fPs
 );
 
 fbPressureReturnSensor(
@@ -36,7 +38,8 @@ fbPressureReturnSensor(
 
 fbPressurePistonSide(
 	nRawInput := G_Inputs.stPressurePistonSide.nValue,
-	fOutput => G_Sensors.fPressurePistonSide
+	fOutput => G_Sensors.fPressurePistonSide,
+	fOutput => G_OPC_UA.fPa
 );
 
 fbPressureLhvSide(
@@ -46,7 +49,8 @@ fbPressureLhvSide(
 
 fbPressureRodSide(
 	nRawInput := G_Inputs.stPressureRodSide.nValue,
-	fOutput => G_Sensors.fPressureRodSide
+	fOutput => G_Sensors.fPressureRodSide,
+	fOutput => G_OPC_UA.fPb
 );
 ]]></ST>
     </Implementation>
@@ -56,15 +60,20 @@ fbPressureRodSide(
       <LineId Id="11" Count="1" />
       <LineId Id="8" Count="0" />
       <LineId Id="20" Count="3" />
+      <LineId Id="77" Count="0" />
       <LineId Id="7" Count="0" />
-      <LineId Id="39" Count="4" />
+      <LineId Id="39" Count="3" />
+      <LineId Id="90" Count="0" />
+      <LineId Id="43" Count="0" />
       <LineId Id="45" Count="3" />
       <LineId Id="44" Count="0" />
       <LineId Id="50" Count="3" />
+      <LineId Id="89" Count="0" />
       <LineId Id="49" Count="0" />
       <LineId Id="55" Count="3" />
       <LineId Id="54" Count="0" />
       <LineId Id="60" Count="3" />
+      <LineId Id="88" Count="0" />
       <LineId Id="59" Count="0" />
       <LineId Id="38" Count="0" />
     </LineIds>

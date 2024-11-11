@@ -19,7 +19,8 @@ END_VAR
 	Den := G_Parameter.fPressureFilterDen,
 	Initial := G_Parameter.fPressureFilterInit,
 	
-	Signal_Filtered => G_Filtered.fPressurePistonSideFiltered
+	Signal_Filtered => G_Filtered.fPressurePistonSideFiltered,
+	Signal_Filtered => G_OPC_UA.fPaFiltered
 );
 
 fbFilterPb(
@@ -30,7 +31,8 @@ fbFilterPb(
 	Den := G_Parameter.fPressureFilterDen,
 	Initial := G_Parameter.fPressureFilterInit,
 	
-	Signal_Filtered => G_Filtered.fPressureRodSideFiltered
+	Signal_Filtered => G_Filtered.fPressureRodSideFiltered,
+	Signal_Filtered => G_OPC_UA.fPbFiltered
 );
 
 fbFilterPs(
@@ -41,7 +43,8 @@ fbFilterPs(
 	Den := G_Parameter.fPressureFilterDen,
 	Initial := G_Parameter.fPressureFilterInit,
 	
-	Signal_Filtered => G_Filtered.fPressureSupplyFiltered
+	Signal_Filtered => G_Filtered.fPressureSupplyFiltered,
+	Signal_Filtered => G_OPC_UA.fPsFiltered
 );
 
 fbFilterU(
@@ -52,11 +55,19 @@ fbFilterU(
 	Den := G_Parameter.fSignalFilterDen,
 	Initial := G_Parameter.fSignalFilterInit,
 	
-	Signal_Filtered => G_Filtered.fValveOutputFiltered
+	Signal_Filtered => G_Filtered.fValveOutputFiltered,
+	Signal_Filtered => G_OPC_UA.fFilteredSignal
 );]]></ST>
     </Implementation>
     <LineIds Name="P_Filtering">
-      <LineId Id="6" Count="41" />
+      <LineId Id="6" Count="8" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="15" Count="10" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="26" Count="10" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="37" Count="10" />
+      <LineId Id="57" Count="0" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>
