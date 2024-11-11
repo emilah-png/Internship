@@ -11,9 +11,9 @@ POS-profiles
 	fMaxSpeed : LREAL := 0.1;
 
 3:---------------------------------------------------------
-	fPositionSetpoint_ms : LREAL := 0.32;
+	fPositionSetpoint_ms : LREAL := 0.3;
 	fRampTime_s : LREAL := 2;
-	fMaxSpeed : LREAL := 0.15;	
+	fMaxSpeed : LREAL := 0.1;	
 
 4:---------------------------------------------------------
 	fPositionSetpoint_ms : LREAL := 0.2;

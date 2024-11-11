@@ -7,9 +7,10 @@ VAR_GLOBAL
 	
 	fPositionSetpoint_ms : LREAL := 0.3;
 	fRampTime_s : LREAL := 1;
+	fMaxSpeed : LREAL := 0.1;
 	fHoldPositionTime_s : LREAL := 1;
 	fTimeBeforeStarting_s : LREAL := 1;
-	fMaxSpeed : LREAL := 0.1;	
+	
 	
 	// Enables
 	bEnablePID : BOOL := FALSE;
