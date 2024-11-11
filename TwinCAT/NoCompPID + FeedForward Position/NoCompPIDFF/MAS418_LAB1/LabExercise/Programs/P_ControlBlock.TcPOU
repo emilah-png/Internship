@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="P_ControlBlock" Id="{1c742f8d-99bf-4aa1-ba99-fa370ccce2ab}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM P_ControlBlock
 VAR
@@ -25,10 +25,13 @@ fbInitialPos(
 
 IF (G_Work.eMode = E_Mode.Auto) THEN
 	
+	
+	
+	IF (G_Parameter.bMotionSelect) THEN
+		
 	G_OPC_UA.fXRef := fbMotionRef.fPositionReference_m;
 	G_OPC_UA.fXDotRef := fbMotionRef.fVelocityReference_ms;
 	
-	IF (G_Parameter.bMotionSelect) THEN
 		fbMotionRef(
 			fStartPosition_m := fbInitialPos.fInitialPos,
 			fStartVelocity_m := G_Parameter.fStartVelocity,
@@ -46,9 +49,36 @@ IF (G_Work.eMode = E_Mode.Auto) THEN
 
 		X_dot := fbMotionRef.fVelocityReference_ms,
 		X := fbMotionRef.fPositionReference_m,
+		
+		bEnablePID := G_Parameter.bEnablePID,
+			bEnableU := G_Parameter.bEnableU,
+		
+			X_real:= G_Sensors.fPistonPosition,
+		
+			Kp := G_Parameter.Kp,
+			Ki := G_Parameter.Ki,
+			Kd := G_Parameter.Kd,
+		
+			Pa:= G_Filtered.fPressurePistonSideFiltered, 
+			Pb := G_Filtered.fPressureRodSideFiltered,
+			Ps:= G_Filtered.fPressureSupplyFiltered,
+		
+			u_filtered := G_Filtered.fValveOutputFiltered,
+		
+			u_Unfiltered => G_Filtered.fValveOutputUnfiltered,
+			u_Unfiltered => G_OPC_UA.fUnfilteredSignal,
+		
+			U	=> G_Work.fControlOutputNormalized,
+			U	=> G_OPC_UA.fU,
+		
+			Error => G_OPC_UA.Error
 
 	);
-	ELSE
+	ELSE 
+		
+	G_OPC_UA.fXRef := fbSineMotionRef.X;
+	G_OPC_UA.fXDotRef := fbSineMotionRef.X_dot;
+	
 		fbSineMotionRef(
 			ssMethodType := BOOL_TO_SINT(G_Work.eStatus = E_Status.Running),
 			fTime := fbClock.fTime,
@@ -57,7 +87,7 @@ IF (G_Work.eMode = E_Mode.Auto) THEN
 			fStart_vel := G_Parameter.fStartVelocity,
 			fStart_time := G_Parameter.fTimeBeforeStarting_s,
 			fHold_time := G_Parameter.fHoldPositionTime_s,
-			fXReal := G_Sensors.fPistonPosition 
+			fXStart := fbInitialPos.fInitialPos 
 		);
 		
 		fbControlBlock(
@@ -65,11 +95,7 @@ IF (G_Work.eMode = E_Mode.Auto) THEN
 
 			X_dot := fbSineMotionRef.X_dot,
 			X := fbSineMotionRef.X,
-
-		);
-	END_IF
-			fbControlBlock(
-			ssMethodType := BOOL_TO_SINT(G_Work.eStatus = E_Status.Running),
+			
 			bEnablePID := G_Parameter.bEnablePID,
 			bEnableU := G_Parameter.bEnableU,
 		
@@ -92,7 +118,9 @@ IF (G_Work.eMode = E_Mode.Auto) THEN
 			U	=> G_OPC_UA.fU,
 		
 			Error => G_OPC_UA.Error
+
 		);
+	END_IF
 
 ELSIF (G_Work.eMode = E_Mode.Manual) THEN
 
@@ -147,9 +175,10 @@ END_IF
       <LineId Id="173" Count="0" />
       <LineId Id="248" Count="0" />
       <LineId Id="99" Count="0" />
-      <LineId Id="152" Count="2" />
+      <LineId Id="152" Count="1" />
       <LineId Id="449" Count="0" />
       <LineId Id="158" Count="0" />
+      <LineId Id="555" Count="3" />
       <LineId Id="32" Count="0" />
       <LineId Id="37" Count="7" />
       <LineId Id="36" Count="0" />
@@ -157,21 +186,27 @@ END_IF
       <LineId Id="463" Count="0" />
       <LineId Id="465" Count="1" />
       <LineId Id="470" Count="2" />
+      <LineId Id="585" Count="0" />
+      <LineId Id="587" Count="20" />
+      <LineId Id="586" Count="0" />
       <LineId Id="490" Count="0" />
       <LineId Id="464" Count="0" />
-      <LineId Id="450" Count="1" />
+      <LineId Id="450" Count="0" />
+      <LineId Id="559" Count="2" />
+      <LineId Id="608" Count="0" />
+      <LineId Id="451" Count="0" />
       <LineId Id="456" Count="6" />
       <LineId Id="455" Count="0" />
       <LineId Id="454" Count="0" />
       <LineId Id="491" Count="0" />
       <LineId Id="493" Count="1" />
       <LineId Id="498" Count="2" />
+      <LineId Id="562" Count="0" />
+      <LineId Id="564" Count="20" />
+      <LineId Id="563" Count="0" />
       <LineId Id="518" Count="0" />
       <LineId Id="492" Count="0" />
       <LineId Id="452" Count="0" />
-      <LineId Id="520" Count="5" />
-      <LineId Id="528" Count="17" />
-      <LineId Id="519" Count="0" />
       <LineId Id="51" Count="0" />
       <LineId Id="33" Count="0" />
       <LineId Id="159" Count="0" />

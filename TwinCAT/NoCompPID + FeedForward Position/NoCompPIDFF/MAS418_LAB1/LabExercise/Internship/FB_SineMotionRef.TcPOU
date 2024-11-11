@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_SineMotionRef" Id="{8a66164f-2ec5-4288-969f-ec4a36804cae}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_SineMotionRef
 VAR_INPUT
@@ -10,7 +10,7 @@ VAR_INPUT
 	fStart_vel: LREAL;
 	fStart_time: LREAL;
 	fHold_time: LREAL;
-	fXReal: LREAL;
+	fXStart: LREAL;
 END_VAR
 VAR_OUTPUT
 	X_dot: LREAL;
@@ -37,13 +37,13 @@ CASE ssMethodType OF
         (* MATLAB Function 'FB_SineMotionRef/MATLAB Function': '<S2>:1' *)
         (* '<S2>:1:2' max_pos = peak_pos-start_pos; *)
         (* '<S2>:1:3' peak_vel = max_pos*2/pos_ramp_time; *)
-        peak_vel := ((fPeak_pos - fXReal) * 2.0) / fPos_Ramp_Time;
+        peak_vel := ((fPeak_pos - fXStart) * 2.0) / fPos_Ramp_Time;
         (* '<S2>:1:4' pos_sat = peak_vel*pos_ramp_time/2 +start_pos; *)
         (* '<S2>:1:5' amplitude_vel = peak_vel/2; *)
         amplitude_vel := peak_vel / 2.0;
         (* '<S2>:1:6' if pos_sat <= 0.4 *)
 
-        IF (((peak_vel * fPos_Ramp_Time) / 2.0) + fXReal) <= 0.4 THEN 
+        IF (((peak_vel * fPos_Ramp_Time) / 2.0) + fXStart) <= 0.4 THEN 
             (* '<S2>:1:7' if time<start_time *)
 
             IF fTime < fStart_time THEN 
@@ -79,7 +79,7 @@ CASE ssMethodType OF
         (* Outport: '<Root>/X' incorporates:
          *  DiscreteIntegrator: '<S1>/Discrete-Time Integrator'
          *  Sum: '<S1>/Sum' *)
-        X := c_DiscreteTimeIntegrator_DS + fXReal;
+        X := c_DiscreteTimeIntegrator_DS + fXStart;
         (* Update for DiscreteIntegrator: '<S1>/Discrete-Time Integrator' *)
         c_DiscreteTimeIntegrator_DS := (0.001 * X_dot) + c_DiscreteTimeIntegrator_DS;
         (* End of Outputs for SubSystem: '<Root>/FB_SineMotionRef' *)
