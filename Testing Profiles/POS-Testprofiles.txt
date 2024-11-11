@@ -1,0 +1,36 @@
+POS-profiler
+
+1:---------------------------------------------------------
+	fPositionSetpoint_ms : LREAL := 0.3;
+	fRampTime_s : LREAL := 1;
+	fHoldPositionTime_s : LREAL := 1;
+	fTimeBeforeStarting_s : LREAL := 1;
+	fMaxSpeed : LREAL := 0.1;	
+
+2:--------------------------------------------------------- 
+	fPositionSetpoint_ms : LREAL := 0.3;
+	fRampTime_s : LREAL := 2.5;
+	fHoldPositionTime_s : LREAL := 1;
+	fTimeBeforeStarting_s : LREAL := 1;
+	fMaxSpeed : LREAL := 0.1;
+
+3:---------------------------------------------------------
+	fPositionSetpoint_ms : LREAL := 0.3;
+	fRampTime_s : LREAL := 2.5;
+	fHoldPositionTime_s : LREAL := 1;
+	fTimeBeforeStarting_s : LREAL := 1;
+	fMaxSpeed : LREAL := 0.15;	
+
+4:---------------------------------------------------------
+	fPositionSetpoint_ms : LREAL := 0.2;
+	fRampTime_s : LREAL := 1;
+	fHoldPositionTime_s : LREAL := 1;
+	fTimeBeforeStarting_s : LREAL := 1;
+	fMaxSpeed : LREAL := 0.15;	
+
+5:---------------------------------------------------------	
+	fPositionSetpoint_ms : LREAL := 0.2;
+	fRampTime_s : LREAL := 1;
+	fHoldPositionTime_s : LREAL := 1;
+	fTimeBeforeStarting_s : LREAL := 1;
+	fMaxSpeed : LREAL := 0.1;	

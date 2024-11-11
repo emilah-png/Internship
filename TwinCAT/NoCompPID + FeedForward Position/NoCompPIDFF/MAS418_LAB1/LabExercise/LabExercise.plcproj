@@ -234,6 +234,9 @@
     <Compile Include="Programs\P_Outputs.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Programs\P_RunClock.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Programs\P_Simulator.TcPOU">
       <SubType>Code</SubType>
     </Compile>

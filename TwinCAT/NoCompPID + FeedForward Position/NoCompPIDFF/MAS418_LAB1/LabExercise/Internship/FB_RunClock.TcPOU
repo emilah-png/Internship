@@ -19,7 +19,7 @@ END_VAR
       <ST><![CDATA[IF bStop OR (G_Work.eStatus = E_Status.Off) THEN
 	bOnOff := FALSE;
 	fTime := 0.0;
-ELSIF bOnOff OR bStart AND (G_Work.eStatus = E_Status.Starting) THEN
+ELSIF bOnOff OR bStart THEN
 	bOnOff := TRUE;
 	fTime := fTime + fCycleTime;
 END_IF

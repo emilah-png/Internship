@@ -12,7 +12,8 @@ P_Filtering();
 P_CraneControl();
 P_ControlBlock();
 P_Outputs();
-P_Inputs();]]></ST>
+P_Inputs();
+P_RunClock();]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
       <LineId Id="5" Count="1" />
@@ -21,6 +22,7 @@ P_Inputs();]]></ST>
       <LineId Id="11" Count="0" />
       <LineId Id="19" Count="0" />
       <LineId Id="15" Count="0" />
+      <LineId Id="27" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

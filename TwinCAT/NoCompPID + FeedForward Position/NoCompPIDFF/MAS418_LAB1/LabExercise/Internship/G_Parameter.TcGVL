@@ -6,20 +6,22 @@ VAR_GLOBAL
 	// Motion Referance parameters
 	
 	fPositionSetpoint_ms : LREAL := 0.3;
-	fTimeBeforeStarting_s : LREAL := 1;
 	fRampTime_s : LREAL := 1;
 	fHoldPositionTime_s : LREAL := 1;
-
+	fTimeBeforeStarting_s : LREAL := 1;
+	fMaxSpeed : LREAL := 0.1;	
 	
+	// Enables
 	bEnablePID : BOOL := FALSE;
 	bEnableU : BOOL := FALSE;	
+	fCycleTime : LREAL := 0.001;
 	
+	// PID-constants
 	Kp : LREAL := 2.0;
 	Ki : LREAL := 0.0;
 	Kd : LREAL := 0.0;
 	
-	fMaxSpeed : LREAL := 0.1;
-	
+	// Filter constants
 	fPressureFilterNum :LREAL := 0.003137;
 	fPressureFilterDenz : LREAL := 1.0;
 	fPressureFilterDen : LREAL := -0.9969;

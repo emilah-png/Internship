@@ -3,13 +3,30 @@
   <GVL Name="G_OPC_UA" Id="{e0c47801-e0b6-4c4d-ac2a-07962aa9fa43}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
+
+	// Mesurements for OPC
 	fXRef : LREAL;
 	fXDotRef : LREAL;
+	fXReal : LREAL := G_Sensors.fPistonPosition;
 	
-	// Mesurements for OPC
 	PID_OUT : LREAL;
 	Error : LREAL;
 	
+	fPa : LREAL := G_Sensors.fPressurePistonSide;
+	fPb : LREAL := G_Sensors.fPressureRodSide;
+	fPs : LREAL := G_Sensors.fPressureSupply;
+	
+	fPaFiltered : LREAL := G_Filtered.fPressurePistonSideFiltered;
+	fPbFiltered : LREAL := G_Filtered.fPressureRodSideFiltered;
+	fPsFiltered : LREAL := G_Filtered.fPressureSupplyFiltered;
+	
+	fUnfilteredSignal : LREAL := G_Filtered.fValveOutputUnfiltered;
+	fFilteredSignal : LREAL := G_Filtered.fValveOutputFiltered;
+	
+	
+	fU : LREAL := G_Work.fControlOutputNormalized;
+	
+	fTime : LREAL;
 	
 END_VAR]]></Declaration>
   </GVL>
