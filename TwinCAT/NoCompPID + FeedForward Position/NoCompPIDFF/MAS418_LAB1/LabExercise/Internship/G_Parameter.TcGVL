@@ -5,7 +5,7 @@
 VAR_GLOBAL
 	// Motion Referance parameters
 	
-	fPositionSetpoint_ms : LREAL := 0.3;
+	fPositionSetpoint_ms : LREAL := 0.35;
 	fRampTime_s : LREAL := 5;
 	fMaxSpeed : LREAL := 0.1;
 	fHoldPositionTime_s : LREAL := 1;
