@@ -6,7 +6,7 @@ VAR_GLOBAL
 	// Motion Referance parameters
 	
 	fPositionSetpoint_ms : LREAL := 0.3;
-	fRampTime_s : LREAL := 1;
+	fRampTime_s : LREAL := 5;
 	fMaxSpeed : LREAL := 0.1;
 	fHoldPositionTime_s : LREAL := 1;
 	fTimeBeforeStarting_s : LREAL := 1;
@@ -20,9 +20,9 @@ VAR_GLOBAL
 	fCycleTime : LREAL := 0.001;
 	
 	// PID-constants
-	Kp : LREAL := 10.0;
-	Ki : LREAL := 0.1;
-	Kd : LREAL := 0.0;
+	Kp : LREAL := 14.0;
+	Ki : LREAL := 0.4;
+	Kd : LREAL := 1.0;
 	
 	// Filter constants
 	fPressureFilterNum :LREAL := 0.003137;
