@@ -52,6 +52,9 @@ IF (G_Work.eMode = E_Mode.Auto) THEN
 		
 		bEnablePID := G_Parameter.bEnablePID,
 			bEnableU := G_Parameter.bEnableU,
+			bEnableFF := G_Parameter.bEnableFF,
+			bEnableComp := G_Parameter.bEnableComp,
+			
 		
 			X_real:= G_Sensors.fPistonPosition,
 		
@@ -70,7 +73,8 @@ IF (G_Work.eMode = E_Mode.Auto) THEN
 		
 			U	=> G_Work.fControlOutputNormalized,
 			U	=> G_OPC_UA.fU,
-		
+			
+			PID_OUT => G_OPC_UA.PID_OUT,
 			Error => G_OPC_UA.Error
 
 	);
@@ -98,7 +102,9 @@ IF (G_Work.eMode = E_Mode.Auto) THEN
 			
 			bEnablePID := G_Parameter.bEnablePID,
 			bEnableU := G_Parameter.bEnableU,
-		
+			bEnableFF := G_Parameter.bEnableFF,
+			bEnableComp := G_Parameter.bEnableComp,
+			
 			X_real:= G_Sensors.fPistonPosition,
 		
 			Kp := G_Parameter.Kp,
@@ -116,7 +122,8 @@ IF (G_Work.eMode = E_Mode.Auto) THEN
 		
 			U	=> G_Work.fControlOutputNormalized,
 			U	=> G_OPC_UA.fU,
-		
+			
+			PID_OUT => G_OPC_UA.PID_OUT,
 			Error => G_OPC_UA.Error
 
 		);
@@ -138,6 +145,8 @@ ELSIF (G_Work.eMode = E_Mode.Manual) THEN
 	ssMethodType := BOOL_TO_SINT(G_Work.eStatus = E_Status.Running),
 	bEnablePID := G_Parameter.bEnablePID,
 	bEnableU := G_Parameter.bEnableU,
+	bEnableFF := G_Parameter.bEnableFF,
+	bEnableComp := G_Parameter.bEnableComp,
 		
 	X_real:= G_Sensors.fPistonPosition,
 	X_dot := fbJoyRef.fVelocityReferance_ms,
@@ -159,6 +168,7 @@ ELSIF (G_Work.eMode = E_Mode.Manual) THEN
 	U	=> G_Work.fControlOutputNormalized,
 	U	=> G_OPC_UA.fU,
 	
+	PID_OUT => G_OPC_UA.PID_OUT,
 	Error => G_OPC_UA.Error
 	);
 END_IF
@@ -187,7 +197,13 @@ END_IF
       <LineId Id="465" Count="1" />
       <LineId Id="470" Count="2" />
       <LineId Id="585" Count="0" />
-      <LineId Id="587" Count="20" />
+      <LineId Id="587" Count="1" />
+      <LineId Id="618" Count="0" />
+      <LineId Id="620" Count="0" />
+      <LineId Id="619" Count="0" />
+      <LineId Id="589" Count="17" />
+      <LineId Id="635" Count="0" />
+      <LineId Id="607" Count="0" />
       <LineId Id="586" Count="0" />
       <LineId Id="490" Count="0" />
       <LineId Id="464" Count="0" />
@@ -202,7 +218,10 @@ END_IF
       <LineId Id="493" Count="1" />
       <LineId Id="498" Count="2" />
       <LineId Id="562" Count="0" />
-      <LineId Id="564" Count="20" />
+      <LineId Id="564" Count="2" />
+      <LineId Id="621" Count="1" />
+      <LineId Id="567" Count="17" />
+      <LineId Id="634" Count="0" />
       <LineId Id="563" Count="0" />
       <LineId Id="518" Count="0" />
       <LineId Id="492" Count="0" />
@@ -221,7 +240,9 @@ END_IF
       <LineId Id="84" Count="0" />
       <LineId Id="83" Count="0" />
       <LineId Id="74" Count="1" />
-      <LineId Id="146" Count="2" />
+      <LineId Id="146" Count="1" />
+      <LineId Id="623" Count="1" />
+      <LineId Id="148" Count="0" />
       <LineId Id="76" Count="2" />
       <LineId Id="385" Count="0" />
       <LineId Id="388" Count="1" />
@@ -235,6 +256,7 @@ END_IF
       <LineId Id="142" Count="0" />
       <LineId Id="82" Count="0" />
       <LineId Id="423" Count="0" />
+      <LineId Id="636" Count="0" />
       <LineId Id="437" Count="1" />
       <LineId Id="64" Count="0" />
       <LineId Id="11" Count="0" />

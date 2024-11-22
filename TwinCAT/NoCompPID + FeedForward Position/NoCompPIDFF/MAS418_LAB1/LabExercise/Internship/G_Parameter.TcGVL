@@ -6,7 +6,7 @@ VAR_GLOBAL
 	// Motion Referance parameters
 	
 	fPositionSetpoint_ms : LREAL := 0.35;
-	fRampTime_s : LREAL := 5;
+	fRampTime_s : LREAL := 10;
 	fMaxSpeed : LREAL := 0.1;
 	fHoldPositionTime_s : LREAL := 1;
 	fTimeBeforeStarting_s : LREAL := 1;
@@ -17,6 +17,9 @@ VAR_GLOBAL
 	bEnablePID : BOOL := FALSE;
 	bEnableU : BOOL := FALSE;	
 	bMotionSelect : BOOL := FALSE;
+	bEnableFF : BOOL := FALSE;
+	bEnableComp : BOOL := FALSE;
+	
 	fCycleTime : LREAL := 0.001;
 	
 	// PID-constants

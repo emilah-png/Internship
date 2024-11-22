@@ -6,6 +6,8 @@ VAR_INPUT
 	ssMethodType: SINT;
 	bEnableU: BOOL;
 	bEnablePID: BOOL;
+	bEnableFF: BOOL;
+	bEnableComp: BOOL;
 	
 	X_real: LREAL;
 	X: LREAL;
@@ -25,7 +27,7 @@ VAR_OUTPUT
 	U: LREAL;
 	PID_OUT: LREAL;
 	Error: LREAL;
-	u_Unfiltered: LREAL;
+	u_unfiltered: LREAL;
 END_VAR
 VAR
 	rtb_TSamp: LREAL;
@@ -34,6 +36,7 @@ VAR
 	c_DiscreteTimeIntegrator_DS: LREAL;
 	DiscreteTransferFcn_states: LREAL;
 	UD_DSTATE: LREAL;
+	u_FF: LREAL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -88,6 +91,12 @@ CASE ssMethodType OF
         ELSE 
             U := 0.0;
         END_IF;
+		
+		IF bEnableFF THEN 
+            u_FF := u_filtered;
+        ELSE 
+          	u_FF := 0.0;
+        END_IF;
 
         (* End of Switch: '<S1>/Switch' *)
         
@@ -110,7 +119,7 @@ CASE ssMethodType OF
          *  Sum: '<S1>/Sum' *)
 
         IF bEnableU THEN 
-            U := u_filtered + PID_OUT;
+            U := u_FF + PID_OUT;
         ELSE 
             U := 0.0;
         END_IF;
@@ -145,7 +154,7 @@ CASE ssMethodType OF
         (* '<S3>:1:8' dP_0 = 7e5; *)
         (* Pressure drop with compansator *)
         (* '<S3>:1:10' if x_dot > 0 *)
-
+		
         IF X_dot > 0.0 THEN 
             (* '<S3>:1:11' Q = x_dot * A; *)
             (* Wanted Flow *)
@@ -155,7 +164,12 @@ CASE ssMethodType OF
             (* '<S3>:1:15' Q_star = (Q * sqrt(dp_ref)) * 6e4; *)
             (* Referance Flow [L/min] *)
             (* '<S3>:1:16' u = (Q_star * a + BW)/SpoolTravel; *)
-            temp2 := ABS(700000.0 / ((Ps - Pa) * 100000.0));
+			IF NOT(bEnableComp) THEN
+            	temp2 := ABS(700000.0 / ((Ps - Pa) * 100000.0));
+			ELSE
+				temp2 := 1;
+			END_IF
+			
             u_Unfiltered := (((SQRT(temp2) * (X_dot * 0.00331)) * 60000.0) * 0.28) / 7.0;
             (* Control Signal [-1, 1] *)
         ELSIF X_dot < 0.0 THEN 
@@ -168,7 +182,11 @@ CASE ssMethodType OF
             (* '<S3>:1:23' Q_star = (Q * sqrt(dp_ref)) * 6e4; *)
             (* Referance Flow [L/min] *)
             (* '<S3>:1:24' u = (Q_star * a - BW)/SpoolTravel; *)
-            temp1 := ABS(700000.0 / ((Ps - Pb) * 100000.0));
+			IF NOT(bEnableComp) THEN
+            	temp1 := ABS(700000.0 / ((Ps - Pb) * 100000.0));
+			ELSE
+				temp1 := 1;
+			END_IF
             u_Unfiltered := (((SQRT(temp1) * (X_dot * 0.00236003)) * 60000.0) * 0.28) / 7.0;
             (* Control Signal [-1, 1] *)
         ELSE 
@@ -196,23 +214,35 @@ CASE ssMethodType OF
         (* Update for DiscreteTransferFcn: '<S2>/Discrete Transfer Fcn' incorporates:
          *  Outport: '<Root>/Error' *)
         DiscreteTransferFcn_states := Error - (-0.999 * DiscreteTransferFcn_states);
-        (* Update for DiscreteIntegrator: '<S2>/Discrete-Time Integrator' incorporates:
-         *  Outport: '<Root>/Error' *)
+        (* u_ffpdate for DiscreteIntegrator: '<S2>/Discrete-Time Integrator' incorporates:
+         *  Ou_fftport: '<Root>/Error' *)
         c_DiscreteTimeIntegrator_DS := (0.001 * Error) + c_DiscreteTimeIntegrator_DS;
-        (* Update for UnitDelay: '<S4>/UD'
+        (* u_ffpdate for u_ffnitDelay: '<S4>/u_ffD'
          *
-         * Block description for '<S4>/UD':
+         * Block description for '<S4>/u_ffD':
          *  
          *  Store in Global RAM *)
         UD_DSTATE := rtb_TSamp;
-        (* End of Outputs for SubSystem: '<Root>/FB_ControlBlockWithMonitoring' *)
+        (* End of Ou_fftpu_ffts for Su_ffbSystem: '<Root>/FB_ControlBlockWithMonitoring' *)
 END_CASE;
 
 
 ]]></ST>
     </Implementation>
     <LineIds Name="c_FB_ControlBlockWithMonito">
-      <LineId Id="4" Count="171" />
+      <LineId Id="4" Count="50" />
+      <LineId Id="210" Count="0" />
+      <LineId Id="212" Count="3" />
+      <LineId Id="211" Count="0" />
+      <LineId Id="55" Count="66" />
+      <LineId Id="220" Count="0" />
+      <LineId Id="122" Count="0" />
+      <LineId Id="221" Count="1" />
+      <LineId Id="224" Count="0" />
+      <LineId Id="223" Count="0" />
+      <LineId Id="123" Count="11" />
+      <LineId Id="225" Count="3" />
+      <LineId Id="135" Count="40" />
       <LineId Id="2" Count="0" />
     </LineIds>
   </POU>
