@@ -37,10 +37,13 @@ VAR
 	DiscreteTransferFcn_states: LREAL;
 	UD_DSTATE: LREAL;
 	u_FF: LREAL;
+	Q_Const : LREAL;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[
+Q_Const := G_Parameter.fQConst;
+
 CASE ssMethodType OF
     SS_INITIALIZE: 
         (* SystemInitialize for Atomic SubSystem: '<Root>/FB_ControlBlockWithMonitoring' *)
@@ -170,7 +173,7 @@ CASE ssMethodType OF
 				temp2 := 1;
 			END_IF
 			
-            u_Unfiltered := (((SQRT(temp2) * (X_dot * 0.00331)) * 60000.0) * 0.28) / 7.0;
+            u_Unfiltered := (((SQRT(temp2) * (X_dot * 0.00331)) * 60000.0) * (7/Q_Const)) / 7.0;
             (* Control Signal [-1, 1] *)
         ELSIF X_dot < 0.0 THEN 
             (* '<S3>:1:18' elseif x_dot < 0 *)
@@ -187,7 +190,7 @@ CASE ssMethodType OF
 			ELSE
 				temp1 := 1;
 			END_IF
-            u_Unfiltered := (((SQRT(temp1) * (X_dot * 0.00236003)) * 60000.0) * 0.28) / 7.0;
+            u_Unfiltered := (((SQRT(temp1) * (X_dot * 0.00236003)) * 60000.0) * (7/Q_Const)) / 7.0;
             (* Control Signal [-1, 1] *)
         ELSE 
             (* '<S3>:1:26' else *)
@@ -230,6 +233,7 @@ END_CASE;
 ]]></ST>
     </Implementation>
     <LineIds Name="c_FB_ControlBlockWithMonito">
+      <LineId Id="268" Count="1" />
       <LineId Id="4" Count="50" />
       <LineId Id="210" Count="0" />
       <LineId Id="212" Count="3" />

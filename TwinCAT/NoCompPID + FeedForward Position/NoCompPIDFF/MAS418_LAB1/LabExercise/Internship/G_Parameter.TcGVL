@@ -4,7 +4,6 @@
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
 	// Motion Referance parameters
-	
 	fPositionSetpoint_ms : LREAL := 0.35;
 	fRampTime_s : LREAL := 10;
 	fMaxSpeed : LREAL := 0.1;
@@ -21,6 +20,7 @@ VAR_GLOBAL
 	bEnableComp : BOOL := FALSE;
 	
 	fCycleTime : LREAL := 0.001;
+	fQConst : LREAL := 15;
 	
 	// PID-constants
 	Kp : LREAL := 14.0;

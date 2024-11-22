@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_ValveOutput" Id="{f59c2bfb-80b3-4afa-9ddc-65e6b1ad119e}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_ValveOutput
 VAR_INPUT
@@ -12,8 +12,8 @@ VAR_OUTPUT
 	nOutput : INT; 
 END_VAR
 VAR
-	nOffset 	: INT := 19660;
-	nMaxValue	: INT := 29490;
+	nOffset 	: INT := 19630;
+	nMaxValue	: INT := 29460;
 	nMinValue 	: INT :=  9830;
 	nTempOutput : INT;
 END_VAR
