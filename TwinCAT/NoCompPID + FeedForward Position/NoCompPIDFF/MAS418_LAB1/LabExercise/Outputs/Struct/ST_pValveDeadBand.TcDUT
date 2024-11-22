@@ -4,8 +4,8 @@
     <Declaration><![CDATA[TYPE ST_pValveDeadBand :
 STRUCT
 	fPosMax	: LREAL := 29460; // Positive min value [19660..29490]
-	fPosMin	: LREAL := 19660; // Positive max value [19660..29490]
-	fNegMin : LREAL := 19660; // Negative max value [9830..19660]
+	fPosMin	: LREAL := 20800; // Positive max value [19660..29490]
+	fNegMin : LREAL := 18500; // Negative max value [9830..19660]
 	fNegMax	: LREAL := 9830; // Negative min value [9830..19660]
 END_STRUCT
 END_TYPE
