@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="P_ControlBlock" Id="{34b73f17-fb3f-4014-8571-592d49402d29}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_ControlBlock
+VAR
+	fbDeadBandTester : FB_DeadbandTester;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbDeadBandTester(
+	fInput := G_Inputs.nRawJoystick,
+	bEnable := G_Parameter.bDeadBand,
+	fConst := G_Parameter.fConst,
+	fOutput => G_OPC.fU
+);
+]]></ST>
+    </Implementation>
+    <LineIds Name="P_ControlBlock">
+      <LineId Id="5" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="14" Count="2" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="19" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
