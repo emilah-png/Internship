@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="P_Filtering" Id="{152e0fb1-83f0-480e-9255-787d93a44be7}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM P_Filtering
 VAR
@@ -8,6 +8,7 @@ VAR
 	fbFilterPb : FB_Filtering;
 	fbFilterPs : FB_Filtering;
 	fbFilterU : FB_Filtering;
+	fbFilterPaLower : FB_Filtering;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -47,6 +48,18 @@ fbFilterPs(
 	Signal_Filtered => G_OPC.fPsFiltered
 );
 
+fbFilterPaLower(
+	ssMethodType := 1,
+	Signal := G_OPC.fPaLower,
+	Num := G_Parameter.fPressureFilterNum,
+	Denz := G_Parameter.fPressureFilterDenz,
+	Den := G_Parameter.fPressureFilterDen,
+	Initial := G_Parameter.fPressureFilterInit,
+	
+	Signal_Filtered => G_Filtered.fPressureSupplyFiltered,
+	Signal_Filtered => G_OPC.fPaLowerFiltered
+);
+
 //fbFilterU(
 //	ssMethodType := 1,
 //	Signal := G_Filtered.fValveOutputUnfiltered,
@@ -66,7 +79,13 @@ fbFilterPs(
       <LineId Id="59" Count="0" />
       <LineId Id="26" Count="10" />
       <LineId Id="58" Count="0" />
-      <LineId Id="37" Count="10" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="74" Count="7" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="38" Count="9" />
       <LineId Id="57" Count="0" />
       <LineId Id="5" Count="0" />
     </LineIds>

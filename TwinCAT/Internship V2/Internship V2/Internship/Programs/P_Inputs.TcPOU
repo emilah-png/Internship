@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="P_Inputs" Id="{94ed4cce-6a16-4a20-9eff-b4a1e6338584}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM P_Inputs
 VAR
 	fbNormPa :  FB_Normalize;
 	fbNormPb :  FB_Normalize;
 	fbNormPs :  FB_Normalize;
+	fbNormPaLower : FB_Normalize;
 	
 	fbNormPistonPosition : FB_PositionInputScaling;
 	fbJoystick : FB_JoystickInputScaling;
@@ -13,6 +14,7 @@ VAR
 	fPa : LREAL;
 	fPb : LREAL;
 	fPs : LREAL;
+	fPaLower : LREAL;
 	
 	fPistonPosition : LREAL;
 END_VAR
@@ -43,8 +45,14 @@ fbNormPistonPosition(
 	
 fbJoystick(
 	nRawInput := G_Inputs.nRawJoystick,
-	bEnable := G_Inputs.bManual,
+	bEnable := (G_Mode.bRunning AND G_Mode.bManual),
 	fOutput => G_OPC.fJoystick
+);
+
+fbNormPaLower(
+	nRawInput := G_Inputs.nRawPaLower,
+	fMaxValue := 400.0, 			// [Bar]
+	fNormalizedInput => G_OPC.fPaLower
 );]]></ST>
     </Implementation>
     <LineIds Name="P_Inputs">
@@ -64,6 +72,11 @@ fbJoystick(
       <LineId Id="48" Count="1" />
       <LineId Id="51" Count="2" />
       <LineId Id="50" Count="0" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="74" Count="1" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="73" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

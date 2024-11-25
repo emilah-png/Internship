@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="P_ControlBlock" Id="{34b73f17-fb3f-4014-8571-592d49402d29}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM P_ControlBlock
 VAR
@@ -8,7 +8,7 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[fbDeadBandTester(
-	fInput := G_Inputs.nRawJoystick,
+	fInput := G_OPC.fJoystick,
 	bEnable := G_Parameter.bDeadBand,
 	fConst := G_Parameter.fConst,
 	fOutput => G_OPC.fU
