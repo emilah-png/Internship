@@ -18,6 +18,9 @@
     <LibraryReferences>{a11a680b-04db-4b47-8167-8c39d34b7125}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Control\FB_FeedForward.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Control\FB_Running.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -59,7 +62,13 @@
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
+    <Compile Include="MotionRef\FB_AutoClock.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="MotionRef\FB_DeadbandTester.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MotionRef\FB_MotionRef.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MotionRef\FB_RunClock.TcPOU">

@@ -13,7 +13,7 @@ VAR_GLOBAL
 	nRawPa 				AT %I*	: INT;
 	nRawPb				AT %I*	: INT;
 	nRawPs				AT %I*	: INT;
-	nRawPaLower				AT %I* 	: INT;
+	nRawPaLower			AT %I* 	: INT;
 	
 	// Raw Position Values
 	nRawPistonPosition 	AT %I*	: INT;

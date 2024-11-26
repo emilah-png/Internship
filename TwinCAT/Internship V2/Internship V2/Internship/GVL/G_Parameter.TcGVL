@@ -3,13 +3,11 @@
   <GVL Name="G_Parameter" Id="{6529201b-0264-4389-a4a9-6a2e97edbca5}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
-	// Motion Referance parameters
-	fPositionSetpoint_ms : LREAL := 0.35;
-	fRampTime_s : LREAL := 10;
-	fMaxSpeed : LREAL := 0.1;
-	fHoldPositionTime_s : LREAL := 1;
-	fTimeBeforeStarting_s : LREAL := 1;
-	fStartVelocity : LREAL := 0;
+	// Motion Ref
+	fAmplitude : LREAL := 0.1;
+	fMean : LREAL := 0.2;
+	fFrequency : LREAL := 0.05;
+	
 	
 	fConst : LREAL := 0.0; // [-1, 1]
 	
@@ -40,6 +38,11 @@ VAR_GLOBAL
 	fSignalFilterDenz : LREAL := 1.0;
 	fSignalFilterDen : LREAL := -0.9048;
 	fSignalFilterInit : LREAL := 0;
+	
+	fQMaxUp : LREAL := 15.9;
+	fQMaxDown : LREAL := 24.4;
+	fDeadUp : LREAL := 0.18;
+	fDeadDown : LREAL := -0.155;
 	
 END_VAR]]></Declaration>
   </GVL>

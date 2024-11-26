@@ -20,6 +20,9 @@ VAR_GLOBAL
 	fPistonPosition : LREAL;
 	fJoystick : LREAL;
 	
+	fXRef : LREAL;
+	fXDotRef : LREAL;
+	
 	fU : LREAL;
 	fTime : LREAL;
 END_VAR]]></Declaration>
