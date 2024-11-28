@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
   <POU Name="P_ControlBlock" Id="{34b73f17-fb3f-4014-8571-592d49402d29}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM P_ControlBlock
 VAR
@@ -7,10 +7,16 @@ VAR
 	fbAutoClock : FB_AutoClock;
 	fbMotionRef : FB_MotionRef;
 	fbFF : FB_FeedForward;
+	fbInitialPos : FB_InitialPos;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF G_Mode.bAuto AND G_Mode.bRunning THEN
+      <ST><![CDATA[fbInitialPos(
+	bEnable := G_Mode.bRunning,
+	fCurrentPos := G_OPC.fPistonPosition
+);
+
+IF G_Mode.bAuto AND G_Mode.bRunning THEN
 
 fbAutoClock(
 	fStart := G_Inputs.bStartButton,
@@ -21,7 +27,7 @@ fbAutoClock(
 fbMotionRef(
 	fTime := fbAutoClock.fTime,
 	fAmplitude := G_Parameter.fAmplitude,
-	fMean := G_Parameter.fMean,
+	fInitialPos := fbInitialPos.fInitialPos,
 	fFrequency := G_Parameter.fFrequency,
 	fXDotRef => G_OPC.fXDotRef,
 	fXRef => G_OPC.fXRef 
@@ -49,6 +55,10 @@ END_IF
 ]]></ST>
     </Implementation>
     <LineIds Name="P_ControlBlock">
+      <LineId Id="69" Count="0" />
+      <LineId Id="73" Count="1" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="70" Count="0" />
       <LineId Id="56" Count="0" />
       <LineId Id="58" Count="0" />
       <LineId Id="32" Count="0" />

@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
   <POU Name="FB_FeedForward" Id="{c7c6c1c3-721c-4ea2-9006-d66030d86044}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_FeedForward
 VAR_INPUT
-	fXDotRef : LREAL;
-	fQMaxUp : LREAL;
-	fQMaxDown : LREAL;
-	fDeadUp : LREAL;
-	fDeadDown : LREAL;
+	fXDotRef 	: LREAL; // Motion Referance
+	fQMaxUp 	: LREAL; // Needs to be positive (22)
+	fQMaxDown 	: LREAL; // Needs to be positive (15)
+	fDeadUp		: LREAL; // Needs to be positive (0.155)
+	fDeadDown 	: LREAL; // Needs to be positive (0.18)
 END_VAR
 VAR_OUTPUT
 	fUFF : LREAL;
@@ -22,30 +22,30 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[
-IF fXDotRef >= 0.0 THEN 
+IF fXDotRef >= 0.0 THEN // Upwards
 	
 	fQRef := fAp * fXDotRef * 60000;
-	fUTemp := fDeadUp + (fQRef/fQMaxUp) * (fUMax-fDeadUp);
-	
-	IF fUTemp > fUMax THEN
-		fUFF := fUMax;
-	
-	ELSIF fUTemp < fDeadUp THEN
-		fUFF := fDeadUp;
-	ELSE
-		fUFF := fUTemp;
-	END_IF
-
-ELSIF fXDotRef < 0.0 THEN
-	
-	fQRef := fAa * fXDotRef * 60000;
-	fUTemp := fDeadDown + (fQRef/fQMaxDown) * (fUMax+fDeadDown); // FDeadDown needs to be negative
+	fUTemp := -(fDeadUp + (fQRef/fQMaxUp) * (fUMax-fDeadUp));
 	
 	IF fUTemp < -fUMax THEN
 		fUFF := -fUMax;
 	
-	ELSIF fUTemp > -fDeadDown THEN
-		fUFF := -fDeadDown;
+	ELSIF fUTemp > -fDeadUp THEN
+		fUFF := -fDeadUp;
+	ELSE
+		fUFF := fUTemp;
+	END_IF
+
+ELSIF fXDotRef < 0.0 THEN // Downwards
+	
+	fQRef := fAa * fXDotRef * 60000;
+	fUTemp := -(-fDeadDown + (fQRef/fQMaxDown) * (fUMax-fDeadDown)); // FDeadDown needs to be positive
+	
+	IF fUTemp > fUMax THEN
+		fUFF := fUMax;
+	
+	ELSIF fUTemp < fDeadDown THEN
+		fUFF := fDeadDown;
 	ELSE
 		fUFF := fUTemp;
 	END_IF

@@ -38,6 +38,10 @@
     <Compile Include="GVL\G_ControlInit.TcGVL">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GVL\G_FilterConstants.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="GVL\G_OPC.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
@@ -66,6 +70,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MotionRef\FB_DeadbandTester.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MotionRef\FB_InitialPos.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MotionRef\FB_MotionRef.TcPOU">
