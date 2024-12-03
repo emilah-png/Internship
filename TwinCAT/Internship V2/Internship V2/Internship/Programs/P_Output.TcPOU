@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
   <POU Name="P_Output" Id="{ea868c64-71e1-491f-a495-e9db7d8a4d4c}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM P_Output
 VAR
@@ -9,7 +9,7 @@ END_VAR
     <Implementation>
       <ST><![CDATA[fbValveOutput(
 	fNormalizedInput := G_OPC.fU,
-	bEnable := G_Parameter.bEnableU,
+	bEnable := G_Enables.bEnableU,
 	nOutput => G_Output.nValveOutput	
 );
 

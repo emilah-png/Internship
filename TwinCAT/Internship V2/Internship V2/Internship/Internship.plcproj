@@ -21,6 +21,9 @@
     <Compile Include="Control\FB_FeedForward.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Control\FB_PID.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Control\FB_Running.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -34,9 +37,6 @@
     <Compile Include="Filtering\G_Filtered.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
-    </Compile>
-    <Compile Include="GVL\G_ControlInit.TcGVL">
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="GVL\G_Enables.TcGVL">
       <SubType>Code</SubType>
@@ -113,7 +113,19 @@
     <Compile Include="Programs\P_Output.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Programs\P_PID.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Programs\P_RunClock.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="XML\FB_Derivator.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="XML\G_Init.TcGVL">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="XML\FB_Integrator.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

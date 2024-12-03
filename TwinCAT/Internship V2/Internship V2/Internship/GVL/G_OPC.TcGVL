@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
   <GVL Name="G_OPC" Id="{5ea6be42-d96d-412e-8945-28bb945cf324}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
@@ -25,6 +25,8 @@ VAR_GLOBAL
 	
 	fU : LREAL;
 	fTime : LREAL;
+	fError : LREAL;
+	fSignalPID : LREAL;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

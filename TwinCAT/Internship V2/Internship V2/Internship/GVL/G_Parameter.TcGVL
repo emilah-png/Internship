@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
   <GVL Name="G_Parameter" Id="{6529201b-0264-4389-a4a9-6a2e97edbca5}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
@@ -15,22 +15,15 @@ VAR_GLOBAL
 	
 	// Deadband test
 	fConst : LREAL := 0.0; // [-1, 1]
-	
-	// Enables
-	bEnablePID : BOOL := FALSE;
-	bEnableU : BOOL := FALSE;	
-	bEnableFF : BOOL := FALSE;
-	bMotionSelect : BOOL := FALSE;
-	bEnableComp : BOOL := FALSE;
-	bDeadBand : BOOL := FALSE;
+
 	
 	fCycleTime : LREAL := 0.001;
 	fQConst : LREAL := 15;
 	
 	// PID-constants
-	Kp : LREAL := 14.0;
-	Ki : LREAL := 0.4;
-	Kd : LREAL := 1.0;
+	Kp : LREAL := 14.0; // P
+	Ki : LREAL := 0.4;	// I
+	Kd : LREAL := 1.0;	// D
 	
 	
 	

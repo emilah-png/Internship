@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Refactors>
+  <Renames>
+    <RenamedType>
+      <Type guid="ff24d0bb-675e-416a-a696-d612cc2a07e4">GVL_991357354</Type>
+      <From>GVL_991357354</From>
+      <To>G_Init</To>
+    </RenamedType>
+    <RenamedType>
+      <Type guid="ba388259-306e-40da-af33-c63428464cb8">INTEGRATOR</Type>
+      <From>Integrator</From>
+      <To>FB_Integrator</To>
+    </RenamedType>
+    <RenamedType>
+      <Type guid="3f122280-99b0-4728-bda7-c5c76630a2c8">DERIVATOR</Type>
+      <From>Derivator</From>
+      <To>FB_Derivator</To>
+    </RenamedType>
+  </Renames>
+</Refactors>
