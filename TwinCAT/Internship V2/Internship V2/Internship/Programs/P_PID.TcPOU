@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="P_PID" Id="{8618f120-26c6-4eb7-b274-74ff26057632}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM P_PID
 VAR
@@ -10,9 +10,9 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF (G_Enables.bEnablePID) THEN
+      <ST><![CDATA[IF (G_Enables.bEnablePID AND G_Mode.bRunning) THEN
 	
-	fbderivatorFiltering(
+	fbDerivatorFiltering(
 		ssMethodType := 1,
 		Signal := fbPID.fSignalD,
 		Num := G_FilterConstants.fDerivatorFilterNum,
@@ -21,6 +21,17 @@ END_VAR
 		Initial := G_FilterConstants.fDerivatorFilterInit,
 		Signal_Filtered => fbDerivator.fSignal
 	);
+	
+	fbIntegrator(
+		ssMethodType := BOOL_TO_SINT(G_Inputs.bStartButton),
+		fSignal := fbPID.fSignalI,
+		fSignalIntegrated => fbPID.fSignalIntegrated
+	);
+	fbDerivator(
+		ssMethodType := BOOL_TO_SINT(G_Inputs.bStartButton),
+		fSignal := fbPID.fSignalD,
+		fSignalDerivative => fbPID.fSignalDerivated
+	);
 
 	fbPID(
 		fX := G_OPC.fXRef,
@@ -28,12 +39,6 @@ END_VAR
 		fKp := G_Parameter.Kp,
 		fKi := G_Parameter.Ki,
 		fKd := G_Parameter.Kd,
-		
-		fSignalI => fbIntegrator.fSignal,
-		fSignalD => fbDerivatorFiltering.Signal_Filtered,
-		
-		fSignalIntegrated := fbIntegrator.fSignalIntegrated,
-		fSignalDerivated := fbDerivator.fSignalDerivative,
 		
 		fError => G_OPC.fError,
 		fSignalAdjusted => G_OPC.fSignalPID
@@ -50,11 +55,17 @@ END_IF
       <LineId Id="50" Count="6" />
       <LineId Id="61" Count="0" />
       <LineId Id="60" Count="0" />
+      <LineId Id="69" Count="1" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="72" Count="1" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="75" Count="1" />
       <LineId Id="49" Count="0" />
       <LineId Id="46" Count="0" />
-      <LineId Id="25" Count="6" />
-      <LineId Id="37" Count="0" />
-      <LineId Id="33" Count="2" />
+      <LineId Id="25" Count="4" />
       <LineId Id="38" Count="0" />
       <LineId Id="36" Count="0" />
       <LineId Id="24" Count="0" />
