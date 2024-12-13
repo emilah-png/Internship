@@ -51,7 +51,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{A47F93F0-8655-4E04-808C-3C581F7DF18C}" Name="Internship" PrjFilePath="Internship\Internship.plcproj" TmcFilePath="Internship\Internship.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" CopyTmcToTarget="true" CopyTpyToTarget="false" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" AutoReloadTmc="true" TmcPath="Internship\Internship.tmc" TmcHash="{8FAB9ADF-0BB1-368F-6C0F-309881E594F7}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" AutoReloadTmc="true" TmcPath="Internship\Internship.tmc" TmcHash="{1FE32D97-934B-3926-7E13-57C7FD6471FD}">
 					<Name>Internship Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">

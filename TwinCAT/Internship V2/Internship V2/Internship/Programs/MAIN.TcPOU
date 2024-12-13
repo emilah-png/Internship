@@ -12,7 +12,8 @@ P_ControlBlock();
 P_Output();
 //P_RunClock();
 P_Modes();
-P_PID();]]></ST>
+P_PID();
+P_FeedForward();]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
       <LineId Id="2" Count="0" />
@@ -20,6 +21,7 @@ P_PID();]]></ST>
       <LineId Id="12" Count="0" />
       <LineId Id="16" Count="0" />
       <LineId Id="20" Count="0" />
+      <LineId Id="24" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

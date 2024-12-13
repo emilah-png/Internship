@@ -18,6 +18,9 @@
     <LibraryReferences>{a11a680b-04db-4b47-8167-8c39d34b7125}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Control\FB_ControlSignal.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Control\FB_FeedForward.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -99,6 +102,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Programs\P_ControlBlock.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Programs\P_FeedForward.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Programs\P_Filtering.TcPOU">

@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <TcLicenseInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2011/11/TcLicenseInfo">
 	<LicenseInfo>
-		<SystemId>{AAA60B79-94A5-622A-C8BA-951F6AAA3ED5}</SystemId>
-		<IssueTime>2024-11-25T15:47:00</IssueTime>
-		<ExpireTime>2024-12-03T00:00:00</ExpireTime>
-		<LicenseKey>c3326e3e2d8b5ca1eed6f723284ad824408704e1312b7c1ffe0013feeffc73e1b69e8e1f16f201b7855d09228af26396a6b105d8faa952d0c52f1e57909fce12c5366c83a2f9eaee67c3e24c0e9043ed19c78254844180b889ef274fdfbddcb9e89584af5558107de7ee5f3dff61608223bc370f0d8673a35475ba0ffdd206d4ef529d91f1304f14d76966e6d466c6fa1d3cc6cc36f65841a32b2541b35941e5de6c8397b97cad1c30ae7caefdf5675eeff0c10fd0ce8b9b1a767d39ba8cf969b8089d523251817262414d638e9151063e90ca0699d867b85830b6a3e7d557a92d7873011c36d2e9b7c916b24d7d433d0b678d9f9f2b1059573484ef2d1654f7</LicenseKey>
-		<License>
-			<LicenseId>{BDCC0070-42D5-49AE-ABF1-1D4434813D60}</LicenseId>
-			<Name>TC3 OPC-UA</Name>
-			<OrderNo>TF6100</OrderNo>
-		</License>
+		<SystemId>{34E8CBBF-7E95-E85D-3A1E-992DF707C632}</SystemId>
+		<IssueTime>2024-12-13T08:33:00</IssueTime>
+		<ExpireTime>2024-12-21T00:00:00</ExpireTime>
+		<LicenseKey>da1c1037ca29965e97009b29efa9648f971b1df15fab3beea8ed0ae1fe337cdefaa51304748cf43c474d97621c0f06f153ec8e7d4b9a6fce0cca335bdef44663f65631d63a603e947ddb1c9ff26189b7413e7375944095759129c3e5894a0bbf2e795fd8fd9af9cdf6eefa0f484b2839874ff12956cc8642133b62895f8cbb845c2eb7594f297533fcaace05ace86a7c8287d80357cbf77055be5740368086b48b81b23024508bcc319be1d401d2b0fa786b591c27d04697094582f9cda3723d0ed316d0f7bf4fd38f6a11caece793e68782a4067593ea53fb6ea2ffbdd67cca64864875f235c039faa54dc8317529d8ecf0a1bb2b65f0e9821caff79974bf70</LicenseKey>
 		<License>
 			<LicenseId>{4C256767-E6E6-4AF5-BD68-9F7ABAD0C200}</LicenseId>
 			<Name>TC3 ADS</Name>
 			<OrderNo>TC1000</OrderNo>
+		</License>
+		<License>
+			<LicenseId>{3FF18E97-7754-401B-93FB-70544DE28A13}</LicenseId>
+			<Name>TC3 IO</Name>
+			<OrderNo>TC1100</OrderNo>
 		</License>
 		<License>
 			<LicenseId>{66689887-CCBD-452C-AC9A-039D997C6E66}</LicenseId>
@@ -21,9 +21,9 @@
 			<OrderNo>TC1200</OrderNo>
 		</License>
 		<License>
-			<LicenseId>{3FF18E97-7754-401B-93FB-70544DE28A13}</LicenseId>
-			<Name>TC3 IO</Name>
-			<OrderNo>TC1100</OrderNo>
+			<LicenseId>{BDCC0070-42D5-49AE-ABF1-1D4434813D60}</LicenseId>
+			<Name>TC3 OPC-UA</Name>
+			<OrderNo>TF6100</OrderNo>
 		</License>
 	</LicenseInfo>
 </TcLicenseInfo>

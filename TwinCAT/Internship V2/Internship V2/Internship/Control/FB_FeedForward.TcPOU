@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_FeedForward" Id="{c7c6c1c3-721c-4ea2-9006-d66030d86044}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_FeedForward
 VAR_INPUT
@@ -27,28 +27,28 @@ IF fXDotRef >= 0.0 THEN // Upwards
 	fQRef := fAp * fXDotRef * 60000;
 	fUTemp := -(fDeadUp + (fQRef/fQMaxUp) * (fUMax-fDeadUp));
 	
-	IF fUTemp < -fUMax THEN
-		fUFF := -fUMax;
+//	IF fUTemp < -fUMax THEN
+//		fUFF := -fUMax;
 	
-	ELSIF fUTemp > -fDeadUp THEN
-		fUFF := -fDeadUp;
-	ELSE
-		fUFF := fUTemp;
-	END_IF
+//	ELSIF fUTemp > -fDeadUp THEN
+//		fUFF := -fDeadUp;
+//	ELSE
+//		fUFF := fUTemp;
+//	END_IF
 
 ELSIF fXDotRef < 0.0 THEN // Downwards
 	
 	fQRef := fAa * fXDotRef * 60000;
 	fUTemp := -(-fDeadDown + (fQRef/fQMaxDown) * (fUMax-fDeadDown)); // FDeadDown needs to be positive
 	
-	IF fUTemp > fUMax THEN
-		fUFF := fUMax;
+//	IF fUTemp > fUMax THEN
+//		fUFF := fUMax;
 	
-	ELSIF fUTemp < fDeadDown THEN
-		fUFF := fDeadDown;
-	ELSE
-		fUFF := fUTemp;
-	END_IF
+//	ELSIF fUTemp < fDeadDown THEN
+//		fUFF := fDeadDown;
+//	ELSE
+//		fUFF := fUTemp;
+//	END_IF
 
 END_IF
 
@@ -62,7 +62,11 @@ END_IF
       <LineId Id="22" Count="0" />
       <LineId Id="26" Count="0" />
       <LineId Id="43" Count="0" />
-      <LineId Id="45" Count="6" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="84" Count="1" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="86" Count="1" />
+      <LineId Id="51" Count="0" />
       <LineId Id="44" Count="0" />
       <LineId Id="52" Count="0" />
       <LineId Id="28" Count="0" />
