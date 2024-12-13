@@ -25,7 +25,7 @@ END_VAR
 IF fXDotRef >= 0.0 THEN // Upwards
 	
 	fQRef := fAp * fXDotRef * 60000;
-	fUTemp := -(fDeadUp + (fQRef/fQMaxUp) * (fUMax-fDeadUp));
+	fUTemp := -((fQRef/fQMaxUp) * (fUMax-fDeadUp));
 	
 //	IF fUTemp < -fUMax THEN
 //		fUFF := -fUMax;
@@ -39,7 +39,7 @@ IF fXDotRef >= 0.0 THEN // Upwards
 ELSIF fXDotRef < 0.0 THEN // Downwards
 	
 	fQRef := fAa * fXDotRef * 60000;
-	fUTemp := -(-fDeadDown + (fQRef/fQMaxDown) * (fUMax-fDeadDown)); // FDeadDown needs to be positive
+	fUTemp := -((fQRef/fQMaxDown) * (fUMax-fDeadDown)); // FDeadDown needs to be positive
 	
 //	IF fUTemp > fUMax THEN
 //		fUFF := fUMax;
@@ -52,7 +52,7 @@ ELSIF fXDotRef < 0.0 THEN // Downwards
 
 END_IF
 
-
+fUFF := fUTemp; // Tomec 
 ]]></ST>
     </Implementation>
     <LineIds Name="FB_FeedForward">

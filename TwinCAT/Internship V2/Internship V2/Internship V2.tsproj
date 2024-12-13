@@ -51,7 +51,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{A47F93F0-8655-4E04-808C-3C581F7DF18C}" Name="Internship" PrjFilePath="Internship\Internship.plcproj" TmcFilePath="Internship\Internship.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" CopyTmcToTarget="true" CopyTpyToTarget="false" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" AutoReloadTmc="true" TmcPath="Internship\Internship.tmc" TmcHash="{1FE32D97-934B-3926-7E13-57C7FD6471FD}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" AutoReloadTmc="true" TmcPath="Internship\Internship.tmc" TmcHash="{740AA02D-5DC7-40B8-75B3-A27072B54992}">
 					<Name>Internship Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -904,7 +904,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 									<Type>BIT</Type>
 									<Comment><![CDATA[Bit toggles everytime when new value available]]></Comment>
 								</Entry>
-								<Entry Name="z|" Index="#x6040" Sub="#x11" Flags="#x00020000">
+								<Entry Name="Value" Index="#x6040" Sub="#x11" Flags="#x00020000">
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
@@ -1341,7 +1341,7 @@ Bit1: Value smaller than Limit2]]></Comment>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 3 (EtherCAT)^RIO (EK1100)^AI2 (EL3068)">
 				<Link VarA="PlcTask Inputs^G_Inputs.nRawPa" VarB="AI Standard Channel 4^Value"/>
-				<Link VarA="PlcTask Inputs^G_Inputs.nRawPaLower" VarB="AI Standard Channel 5^z|"/>
+				<Link VarA="PlcTask Inputs^G_Inputs.nRawPaLower" VarB="AI Standard Channel 5^Value"/>
 				<Link VarA="PlcTask Inputs^G_Inputs.nRawPb" VarB="AI Standard Channel 6^Value"/>
 				<Link VarA="PlcTask Inputs^G_Inputs.nRawPs" VarB="AI Standard Channel 1^Value"/>
 			</OwnerB>

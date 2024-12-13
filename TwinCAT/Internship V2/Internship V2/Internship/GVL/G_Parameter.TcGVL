@@ -21,9 +21,9 @@ VAR_GLOBAL
 	fQConst : LREAL := 15;
 	
 	// PID-constants
-	Kp : LREAL := 14.0; // P
-	Ki : LREAL := 0.4;	// I
-	Kd : LREAL := 1.0;	// D
+	Kp : LREAL := 1.0; 	// P
+	Ki : LREAL := 0.0;	// I
+	Kd : LREAL := 0.0;	// D
 	
 	
 	

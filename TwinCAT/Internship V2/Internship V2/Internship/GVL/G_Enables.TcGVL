@@ -9,7 +9,7 @@ VAR_GLOBAL
 	bEnableFF 		: BOOL := FALSE; // Enable FeedForward
 	bMotionSelect 	: BOOL := FALSE; // Switch Motion Reference generator
 	bEnableComp 	: BOOL := FALSE; // Driving with Compensator
-	bDeadBand 		: BOOL := FALSE; // Enable Dead Band Testing
-END_VAR]]></Declaration>
+	bDeadBandTest	: BOOL := FALSE; // Enable Dead Band Testing
+END_VAR ]]></Declaration>
   </GVL>
 </TcPlcObject>

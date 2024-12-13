@@ -48,7 +48,7 @@ fbControl(
 ELSIF G_Mode.bManual AND G_Mode.bRunning THEN
 fbDeadBandTester(
 	fInput := G_OPC.fJoystick,
-	bEnable := G_Enables.bDeadBand,
+	bEnable := G_Enables.bDeadBandTest,
 	fConst := G_Parameter.fConst,
 	fOutput => G_OPC.fU
 );
