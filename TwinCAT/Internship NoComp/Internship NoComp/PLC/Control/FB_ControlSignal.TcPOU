@@ -10,6 +10,7 @@ VAR_INPUT
 	fQMaxDown 	: LREAL; // Needs to be positive (15)
 	fDeadUp		: LREAL; // Needs to be positive (0.155)
 	fDeadDown 	: LREAL; // Needs to be positive (0.18)
+	fKFF 		: LREAL; // Coefficient of FeedForward
 END_VAR
 VAR_OUTPUT
 	fU : LREAL;
@@ -23,7 +24,7 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF bEnableU THEN
-	fUTemp := fUFF - fPID;
+	fUTemp := (fUFF * fKFF)  - fPID;
 	
 	// Deadband compensation
 	IF fUTemp <= 0.0 THEN	// Upwards

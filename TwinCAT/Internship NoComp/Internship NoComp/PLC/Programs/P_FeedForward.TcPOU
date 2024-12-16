@@ -17,7 +17,7 @@ fbFF(
 	
 	fPa := G_OPC.fPaLowerFiltered,
 	fPb := G_OPC.fPbFiltered,
-	fPs := G_OPC.fPs,
+	fPs := G_OPC.fPsFiltered,
 	
 	fUFF => G_OPC.fUFF
 );
