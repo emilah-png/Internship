@@ -11,12 +11,13 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[fbInitialPos(
-	bEnable := G_Mode.bRunning,
+      <ST><![CDATA[
+IF G_Mode.bAuto AND G_Mode.bRunning THEN
+
+fbInitialPos(
+	bEnable := G_Inputs.bStartButton,
 	fCurrentPos := G_OPC.fPistonPosition
 );
-
-IF G_Mode.bAuto AND G_Mode.bRunning THEN
 
 fbAutoClock(
 	fStart := G_Inputs.bStartButton,
@@ -46,6 +47,12 @@ fbControl(
 );
 
 ELSIF G_Mode.bManual AND G_Mode.bRunning THEN
+
+fbInitialPos(
+	bEnable := G_Inputs.bStartButton,
+	fCurrentPos := G_OPC.fPistonPosition
+);
+
 fbDeadBandTester(
 	fInput := G_OPC.fJoystick,
 	bEnable := G_Enables.bDeadBandTest,
@@ -57,11 +64,11 @@ END_IF
 ]]></ST>
     </Implementation>
     <LineIds Name="P_ControlBlock">
-      <LineId Id="69" Count="0" />
-      <LineId Id="73" Count="1" />
-      <LineId Id="71" Count="0" />
       <LineId Id="70" Count="0" />
       <LineId Id="56" Count="0" />
+      <LineId Id="97" Count="0" />
+      <LineId Id="108" Count="2" />
+      <LineId Id="101" Count="0" />
       <LineId Id="58" Count="0" />
       <LineId Id="32" Count="0" />
       <LineId Id="35" Count="2" />
@@ -82,6 +89,10 @@ END_IF
       <LineId Id="55" Count="0" />
       <LineId Id="46" Count="0" />
       <LineId Id="25" Count="1" />
+      <LineId Id="107" Count="0" />
+      <LineId Id="111" Count="2" />
+      <LineId Id="106" Count="0" />
+      <LineId Id="102" Count="0" />
       <LineId Id="5" Count="0" />
       <LineId Id="12" Count="0" />
       <LineId Id="14" Count="2" />

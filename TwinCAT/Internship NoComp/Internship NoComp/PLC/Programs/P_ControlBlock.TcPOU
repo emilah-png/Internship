@@ -53,6 +53,7 @@ fbControl(
 );
 
 ELSIF G_Mode.bManual AND G_Mode.bRunning THEN
+
 fbInitialPos(
 	bEnable := G_Inputs.bStartButton,
 	fCurrentPos := G_OPC.fPistonPosition
@@ -95,6 +96,7 @@ END_IF
       <LineId Id="55" Count="0" />
       <LineId Id="46" Count="0" />
       <LineId Id="25" Count="1" />
+      <LineId Id="126" Count="0" />
       <LineId Id="106" Count="2" />
       <LineId Id="105" Count="0" />
       <LineId Id="5" Count="0" />

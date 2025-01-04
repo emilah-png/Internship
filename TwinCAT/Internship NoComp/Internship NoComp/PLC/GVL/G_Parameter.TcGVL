@@ -26,8 +26,6 @@ VAR_GLOBAL
 	Kd 	: LREAL := 0.0;	// D
 	KFF : LREAL := 0.85; // Coefficient of FeedForward
 	
-	
-	
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
