@@ -14,6 +14,7 @@ fbFF(
 	fQMaxDown := G_Parameter.fQMaxDown,
 	fDeadUp := G_Parameter.fDeadUp,
 	fDeadDown := G_Parameter.fDeadDown,
+	fKFF := G_Parameter.KFF,
 	
 	fPa := G_OPC.fPaLowerFiltered,
 	fPb := G_OPC.fPbFiltered,
@@ -26,6 +27,7 @@ END_IF]]></ST>
     <LineIds Name="P_FeedForward">
       <LineId Id="15" Count="0" />
       <LineId Id="6" Count="5" />
+      <LineId Id="29" Count="0" />
       <LineId Id="21" Count="3" />
       <LineId Id="12" Count="1" />
       <LineId Id="5" Count="0" />

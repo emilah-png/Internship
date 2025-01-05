@@ -11,6 +11,7 @@ VAR_INPUT
 	fPs 		: LREAL;
 	fPa			: LREAL;
 	fPb			: LREAL;
+	fKFF 		: LREAL; // Coefficient of FeedForward
 END_VAR
 VAR_OUTPUT
 	fUFF : LREAL;
@@ -26,9 +27,10 @@ VAR
 	fK07Up : LREAL := 4.54;
 	fK1Up : LREAL := 5.68;
 	
-	fK04Down : LREAL := -1.37;
-	fK07Down : LREAL := -2.45;
-	fK1Down : LREAL := -2.88;
+	fK04Down : LREAL := -2.21; //-1.37;
+	fK07Down : LREAL := -3.96; //-2.45;
+	fK1Down : LREAL := -4.67; //-2.88;
+	
 	fDeltaP : LREAL;
 	fKRef : LREAL; 
 	
@@ -80,7 +82,7 @@ ELSIF fXDotRef < 0.0 THEN // Downwards
 
 END_IF
 
-fUFF := fUTemp; // Tomec 
+fUFF := fUTemp * fKFF; // Tomec 
 ]]></ST>
     </Implementation>
     <LineIds Name="FB_FeedForward">

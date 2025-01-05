@@ -47,7 +47,6 @@ fbControl(
 	fQMaxDown := G_Parameter.fQMaxDown,
 	fDeadUp := G_Parameter.fDeadUp,
 	fDeadDown := G_Parameter.fDeadDown,
-	fKFF := G_Parameter.KFF,
 	
 	fU => G_OPC.fU
 );
@@ -91,7 +90,6 @@ END_IF
       <LineId Id="83" Count="1" />
       <LineId Id="86" Count="2" />
       <LineId Id="85" Count="0" />
-      <LineId Id="117" Count="0" />
       <LineId Id="47" Count="0" />
       <LineId Id="55" Count="0" />
       <LineId Id="46" Count="0" />
