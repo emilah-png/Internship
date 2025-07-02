@@ -17,7 +17,9 @@ END_VAR
 	bRunning => G_Output.bRunning,
 	bManualMode => G_Mode.bManual,
 	bAutoMode => G_Mode.bAuto
-);]]></ST>
+);
+
+]]></ST>
     </Implementation>
     <LineIds Name="P_Modes">
       <LineId Id="5" Count="0" />
@@ -25,6 +27,8 @@ END_VAR
       <LineId Id="20" Count="0" />
       <LineId Id="14" Count="1" />
       <LineId Id="7" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="28" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

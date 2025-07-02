@@ -8,22 +8,26 @@ VAR_GLOBAL
 	fMean : LREAL := 0.2;
 	fFrequency : LREAL := 0.05;
 	
+	
+	// Valve Values
 	fQMaxDown : LREAL := 15.9;
 	fQMaxUp : LREAL := 24.4;
 	fDeadUp : LREAL := 0.13;
 	fDeadDown : LREAL := 0.13;
 	
+	fMaxSpeed : LREAL := 0.01; // [m/s] 
+	
 	// Deadband test
 	fConst : LREAL := 0.0; // [-1, 1]
 
 	
-	fCycleTime : LREAL := 0.001; // Time Step [ms]
+	fCycleTime : LREAL := 0.001; // Time Step [s]
 	fQConst : LREAL := 15;
 	
 	// PID-constants
 	Kp : LREAL := 14.0; 	// P
-	Ki : LREAL := 0.0;	// I
-	Kd : LREAL := 0.0;	// D
+	Ki : LREAL := 0.0;		// I
+	Kd : LREAL := 0.0;		// D
 	
 	
 	

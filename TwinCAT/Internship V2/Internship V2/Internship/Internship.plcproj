@@ -41,6 +41,9 @@
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
+    <Compile Include="GVL\E_Mode.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GVL\G_Enables.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>

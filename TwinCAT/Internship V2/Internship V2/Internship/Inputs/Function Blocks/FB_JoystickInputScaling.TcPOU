@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_JoystickInputScaling" Id="{45abe8f1-3862-4b14-9ee2-cf88212f6af6}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_JoystickInputScaling
 VAR_INPUT
@@ -16,7 +16,7 @@ VAR
 	fMaxInputValue			: LREAL := 14746.0;
 	fMinInputValue 			: LREAL := 1617.0;
 	fNeutralInputValue  	: LREAL := 8160.0;
-	fNeutralDeadband		: LREAL := 50.0;
+	fNeutralDeadband		: LREAL := 100.0;
 	fMaxOutputValue  		: LREAL := 1.0;
 	fMinOutputValue  		: LREAL := -1.0;
 	fNeutralOutputValue  	: LREAL := 0.0;
